@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Zen+Kurenaido&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Belleza&display=swap');
+
+:root{
+    --darkPurple: #231d4b;
+    --darkGreen: #004023;
+    --black: black;
+    --darkGrey: #141414;
+    --lightGrey: #70d8b5;
+    --white: white;
+    --turquoise: #00e5b8;
+    --lightTurquoise: #c8fcea;
+    --verylightTurquoise: #f0fcf8;
+}
+/* Colors */
+.dark{
+    --bg: var(--darkPurple);
+    --bg-2: var(--lightTurquoise);
+    --topBanner-bg: var(--black);
+    --text: var(--white);
+    --text2: var(--turquoise);
+    --ahover: var(--turquoise);
+    --contentColor: var(--darkGrey);
+    --shadow: var(--black);
+
+    background-position: 1%;
+}
+.light{
+    --bg: var(--lightTurquoise);
+    --bg-2: var(--darkPurple);
+    --topBanner-bg: var(--turquoise);
+    --text: var(--black);
+    --ahover: var(--darkGreen);
+    --text2: var(--black);
+    --contentColor: var(--verylightTurquoise);
+    --shadow: var(--lightGrey);
+
+    background-position: 100%;
+}
+
+/* Specific */
+body{
+    color: var(--text);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+
+    background: linear-gradient(to right, var(--darkPurple) 34%, var(--lightTurquoise) 65%);
+    background-size: 300% 100%;
+}
+.topBanner{
+    grid-template-columns: 150px auto 150px;
+    font-size: 20px;
+    background-color: var(--topBanner-bg);
+}
+.topBanner > div{
+    padding: 0 5px;
+}
+
+/* Menu */
+.menu{
+    grid-template-columns: 2fr repeat(4, 3fr);
+}
+.menu form{
+    align-content: end;
+}
+.topBanner label{
+    display: none;
+}
+.search{
+    margin: auto;
+}
+
+/* Login and signin Form */
+.loginForm, .signinForm{
+    width: auto;
+    grid-row-gap: 8px;
+}
+.loginForm input, .signinForm input, .menu input{
+    font-size: 15px;
+}
+.signinForm{
+    grid-template-columns: auto auto;
+}
+
+/* General */
+.centerY{
+    align-content: center;
+}
+.centerX{
+    text-align: center;
+}
+.grid{
+    display: grid;
+}
+.span2{
+    grid-column-end: span 2;
+}
+.topBanner a{
+    text-decoration: none;
+}
+a{
+    color: var(--text2);
+    transition: background-color 0.3s, color 0.3s;
+}
+@media screen and (min-width: 900px) {
+    a:hover{
+        color: var(--bg);
+        background-color: var(--ahover);
+    }
+}
+.wholeWidth{
+    width: 100%;
+}
+.justifyCenter{
+    justify-content: center;
+}
+.contentColor{
+    background-color: var(--contentColor);
+    box-shadow: 5px 10px 18px var(--shadow);
+}
+.border{
+    border: 1px solid var(--text);
+}
+.margin{
+    margin: 25px;
+}
+.radius{
+    border-radius: 15px;
+}
+.lightRadius{
+    border-radius: 5px;
+}
+.padding{
+    padding: 8px 8px;
+}
+
+.dancing{
+    font-family: 'Dancing script', 'Roboto', 'sans-serif';
+}
+.bigTxt{
+    font-size: 27px;
+}
+.hidden{
+    display: none;
+}
+.belleza{
+    font-family: 'Belleza';
+}
+
+/* Phone */
+@media screen and (max-width: 900px) {
+    .menu{
+        display: none;
+        grid-template-columns: auto;
+    }
+    .menu form{
+        grid-column-end: span 2;
+    }
+    body, .loginForm input, .signinForm input{
+        font-size: 13px;
+    }
+    .topBanner label{
+        display: block;
+    }
+    .topBanner input[type=checkbox]:checked + div.menu{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .topBanner{
+        font-size: 17px;
+        grid-template-columns: 1fr;
+    }
+    .bigTxt{
+        font-size: 25px;
+    }
+    .margin{
+        margin: 8px 0;
+    }
+}
+
+body *, body {
+    transition: color 0.5s, background-color 0.5s, background-position 0.5s;
+    -webkit-transition-delay: -90ms;
+}
+
+.preload, .preload *{
+    transition: none;
+}
+
+/* debug */
+.HIGH{
+    height: 5000px;
+}
