@@ -82,6 +82,12 @@ body{
 .doubleGrid{
     grid-template-columns: auto auto;
 }
+.tripleGrid {
+    grid-template-columns: repeat(3, 1fr);
+}
+.smallGap {
+    gap: 4px;
+}
 
 /* General */
 .centerY{
@@ -181,6 +187,10 @@ h1{
     }
     .margin{
         margin: 8px 0;
+    }
+    .wholeGridPhone{
+        grid-column-start: 1;
+        grid-column-end: -1;
     }
 }
 
