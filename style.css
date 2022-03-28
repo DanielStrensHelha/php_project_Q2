@@ -67,7 +67,7 @@ body{
 .topBanner label{
     display: none;
 }
-.search{
+.marginAuto{
     margin: auto;
 }
 
@@ -79,7 +79,7 @@ body{
 .loginForm input, .signinForm input, .menu input{
     font-size: 15px;
 }
-.signinForm{
+.doubleGrid{
     grid-template-columns: auto auto;
 }
 
@@ -93,9 +93,6 @@ body{
 .grid{
     display: grid;
 }
-.span2{
-    grid-column-end: span 2;
-}
 .topBanner a{
     text-decoration: none;
 }
@@ -108,6 +105,11 @@ a{
         color: var(--bg);
         background-color: var(--ahover);
     }
+}
+
+.wholeGrid {
+    grid-column-start: 1;
+    grid-column-end: -1;
 }
 .wholeWidth{
     width: 100%;
@@ -146,6 +148,9 @@ a{
 }
 .belleza{
     font-family: 'Belleza';
+}
+h1{
+    padding: 11px 0;
 }
 
 /* Phone */

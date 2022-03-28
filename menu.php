@@ -1,8 +1,8 @@
 <div class="grid topBanner centerX">
     <div class="grid centerY centerX">
-        <p class="bigTxt dancing">
-            Guitar heros
-        </p>
+        <h1 class="bigTxt dancing">
+            Guitar Heros
+        </h1>
     </div>
     <div class="grid centerX centerY">
         <label for="mobile" class="mobile">Menu</label>
