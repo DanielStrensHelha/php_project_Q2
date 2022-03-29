@@ -2,37 +2,56 @@
 $changingPseudo = true;
 $showDetails = false;
 
+// If new pseudo chosen
 if (!empty($_POST['newPseudo'])) :
-    
-    if (strlen($_POST['newPseudo']) < 4)
-        $problem = 'Pseudo trop court !';
-    
-    else if (strlen($_POST['newPseudo']) > MAXLUSER)
-        $problem = 'Pseudo trop long !';
-    
-    else {
-        $sqlQuerry = 'SELECT id_user FROM users WHERE pseudo_user= :wantedPseudo';
-        $statement = $db->prepare($sqlQuerry);
-        $statement->execute([
-            'wantedPseudo' => $_POST['newPseudo']
-        ]);
 
-        $result = $statement->fetch();
-        print_r($result);
-        if(!empty($result))
-            $problem = 'pseudo already taken';
-        else {
-            $sqlQuerry = 'UPDATE users SET pseudo_user=:newPseudo WHERE id_user=:idUser';
-            $statement = $db->prepare($sqlQuerry);
-            $statement->execute([
-                'newPseudo' => $_POST['newPseudo'],
-                'idUser' => $_SESSION['id_user']
-            ]);
-
-            $_SESSION['user'] = $_POST['newPseudo'];
-            $changingPseudo = false;
-            $showDetails=true;
-        }
+    // Verifying the last date of change
+    if (!empty($result['lastPseudoChange'])) {
+      if(date_diff($lastChange, $currentDate)->format("%a") < 30)
+        $problem = 'Veuillez attendre ' .
+                    PSEUDO_CHANGE - date_diff($lastChange, $currentDate)->format("%a") .
+                    ' jours pour changer de pseudo à nouveau.';
     }
 
+    //Verifying new pseudo length
+    if (!isset($problem)) :
+      if (strlen($_POST['newPseudo']) < 4)
+          $problem = 'Pseudo trop court !';
+
+      else if (strlen($_POST['newPseudo']) > MAXLUSER)
+          $problem = 'Pseudo trop long !';
+
+      //Verifying pseudo is using valide characters
+      else if (preg_match("/^[a-zA-Z0-9\._]+$/", $_POST['newPseudo']) < 1)
+        $problem = "pseudo can only contain letters, numbers or one of those special chars (. _)";
+
+      //If pseudo is valid :
+      else {
+        //Verifying that the pseudo isn't already used
+          $sqlQuerry = 'SELECT id_user FROM users WHERE pseudo_user= :wantedPseudo';
+          $statement = $db->prepare($sqlQuerry);
+          $statement->execute([
+              'wantedPseudo' => $_POST['newPseudo']
+          ]);
+
+          $result = $statement->fetch();
+          if(!empty($result))
+              $problem = "pseudo déja utilisé";
+
+          //If pseudo is valid and unused :
+          else {
+              $sqlQuerry = 'UPDATE users SET pseudo_user=:newPseudo, lastPseudoChange=:currentDate WHERE id_user=:idUser';
+              $statement = $db->prepare($sqlQuerry);
+              $statement->execute([
+                  'newPseudo' => $_POST['newPseudo'],
+                  'currentDate' => date_format($currentDate, "Y-m-d"),
+                  'idUser' => $_SESSION['id_user']
+              ]);
+
+              $_SESSION['user'] = $_POST['newPseudo'];
+              $changingPseudo = false;
+              $showDetails=true;
+          }
+      }
+    endif;
 endif;

@@ -14,10 +14,10 @@
 <div class="grid justifyCenter wholeWidth ">
     <div class="contentColor margin radius">
         <p class="centerX">Inscription</p>
-        <form method="post" action="#" class="grid doubleGrid margin padding">
+        <form method="post" action="#" class="grid doubleGrid margin padding smallGap">
             <label for="pseudo">Pseudo : </label>
             <input type="text" placeholder="pseudonyme" name="pseudo" minlength="4" maxlength="<?php echo MAXLUSER; ?>" required>
-            
+
             <label for="psw">Mot de passe : </label>
             <input type="password" placeholder="password" name="psw" minlength="8" required>
             <label for="psw2">Confirmation du mot de passe : </label>
@@ -26,7 +26,7 @@
             <label for="emailAddress">Addresse mail : </label>
             <input type="email" placeholder="Email address"  name="emailAddress" required>
 
-            <input type="submit" value="S'inscrire" class="wholeGrid centerX justifyCenter">
+            <input type="submit" value="S'inscrire" class="wholeGrid border">
         </form>
     </div>
 </div>

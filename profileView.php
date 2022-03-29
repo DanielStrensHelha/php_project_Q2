@@ -12,8 +12,8 @@
 <body class="preload <?php  if(isset($_COOKIE['theme'])) echo $_COOKIE['theme']; else echo 'light'; ?>">
 
     <div class="grid justifyCenter wholeWidth">
-        <div class="contentColor margin radius grid">
-            
+        <div class="contentColor margin radius grid padding">
+
           <?php if ($showDetails) : ?>
 
             <form action="#" method="post" class="margin">
@@ -34,19 +34,19 @@
 
                 </fieldset>
             </form>
-            
+
           <?php elseif ($changingPseudo) : ?>
-            
+
             <form action="#" method="post" class="grid doubleGrid smallGap margin">
                     <label for="newPseudo">Nouveau pseudo : </label>
                     <input type="text" name="newPseudo" id="newPseudo" minlength="4" maxlength="">
                     <input type="submit" value="Valider" name="submit_change" class="wholeGrid border">
-                    <?php if(isset($problem)) echo 'Erreur : ' . $problem; ?>
+                    <?php if(isset($problem)) echo '<span class="wholeGrid">Erreur : ' . $problem . '</span>'; ?>
             </form>
-            
+
 
           <?php endif; ?>
-            
+
 
         </div>
     </div>
@@ -58,7 +58,7 @@
             >
                 <input type="submit" value="Déconnexion" name="disconnect" class="border">
             </form>
-            
+
             <?php if (isset($_SESSION['admin']) and $_SESSION['admin'] > 0): ?>
                 <a href="admin.php" class="margin">
                     <input type="button" class="wholeWidth border" value="ADMIN">

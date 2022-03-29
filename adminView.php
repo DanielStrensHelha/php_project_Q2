@@ -14,7 +14,6 @@
 <div class="grid">
     <p class="HIGH">
         Page ADMIN
-
     </p>
 </div>
 
