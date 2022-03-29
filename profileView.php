@@ -39,8 +39,9 @@
             
             <form action="#" method="post" class="grid doubleGrid smallGap margin">
                     <label for="newPseudo">Nouveau pseudo : </label>
-                    <input type="text" name="newPseudo" id="newPseudo">
+                    <input type="text" name="newPseudo" id="newPseudo" minlength="4" maxlength="">
                     <input type="submit" value="Valider" name="submit_change" class="wholeGrid border">
+                    <?php if(isset($problem)) echo 'Erreur : ' . $problem; ?>
             </form>
             
 

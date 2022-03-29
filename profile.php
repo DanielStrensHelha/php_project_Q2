@@ -8,10 +8,10 @@ if (empty($_SESSION['user'])) {
 include_once('init.php');
 include_once('dbConnexion.php');
 $showDetails = true;
-$sqlQuerry = 'SELECT mail_user, deleted_user, lastPseudoChange FROM users WHERE `id_user`=:token';
+$sqlQuerry = 'SELECT * FROM users WHERE `id_user`=:idUser';
 $statement = $db->prepare($sqlQuerry);
 $statement->execute([
-    'token' => $_SESSION['id_user']
+    'idUser' => $_SESSION['id_user']
 ]);
 $result = $statement->fetch();
 
@@ -29,7 +29,6 @@ if (isset($_POST['submit_change'])) {
         
     }
 }
-
 
 $pageTitle = 'profile';
 include('profileView.php');
