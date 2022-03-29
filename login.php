@@ -12,13 +12,13 @@ if (!isset($_SESSION['user'])){
         $statement = $db->prepare($sqlQuerry);
         $statement->execute(['pseudo' => $pseudo]);
 
-        $user = $statement->fetchAll();
+        $user = $statement->fetch();
 
 
-        if (isset($user[0]) and password_verify($psw, $user[0]['psw_user'])){
-            $_SESSION['user'] = 'DanielStrens';
-            $_SESSION['admin'] = $user[0]['admin_user'];
-            $_SESSION['id_user'] = $user[0]['id_user'];
+        if (!empty($user) and password_verify($psw, $user['psw_user'])){
+            $_SESSION['user'] = $user['pseudo_user'];
+            $_SESSION['admin'] = $user['admin_user'];
+            $_SESSION['id_user'] = $user['id_user'];
             header('location: login.php');
 
         } else {

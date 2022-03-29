@@ -158,6 +158,9 @@ a{
 h1{
     padding: 11px 0;
 }
+.color2 {
+    color: var(--text2);
+}
 
 /* Phone */
 @media screen and (max-width: 900px) {

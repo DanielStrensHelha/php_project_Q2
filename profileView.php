@@ -12,25 +12,41 @@
 <body class="preload <?php  if(isset($_COOKIE['theme'])) echo $_COOKIE['theme']; else echo 'light'; ?>">
 
     <div class="grid justifyCenter wholeWidth">
-        <div class="contentColor margin radius grid">            
-            <form action="" method="post" class="margin">
+        <div class="contentColor margin radius grid">
+            
+          <?php if ($showDetails) : ?>
+
+            <form action="#" method="post" class="margin">
                 <fieldset class="grid tripleGrid smallGap">
                 <legend>Informations personnelles</legend>
 
                     <label for="pseudo">pseudo : </label>
-                    <?php echo htmlspecialchars($_SESSION['user']); ?></button>
-                    <input type="submit" value="Changer de pseudo" name="changePseudo" class="border wholeGridPhone"></input>
+                    <span class="color2"><?php echo htmlspecialchars($_SESSION['user']); ?></span>
+                    <input type="submit" value="Changer de pseudo" name="submit_change" class="border wholeGridPhone">
 
                     <label for="mail">mail : </label>
-                    <?php echo htmlspecialchars($mail); ?>
-                    <input type="submit" value="Changer d'addresse mail" name="changeMail" class="border wholeGridPhone"></input>
+                    <span class="color2"><?php echo htmlspecialchars($mail); ?></span>
+                    <input type="submit" value="Changer d'addresse mail" name="submit_change" class="border wholeGridPhone">
 
                     <label for="psw">Mot de passe : </label>
-                    ********
-                    <input type="submit" value="Changer de mot de passe" name="changePsw" class="border wholeGridPhone"></input>
+                    <span class="color2">********</span>
+                    <input type="submit" value="Changer de mot de passe" name="submit_change" class="border wholeGridPhone">
 
                 </fieldset>
             </form>
+            
+          <?php elseif ($changingPseudo) : ?>
+            
+            <form action="#" method="post" class="grid doubleGrid smallGap margin">
+                    <label for="newPseudo">Nouveau pseudo : </label>
+                    <input type="text" name="newPseudo" id="newPseudo">
+                    <input type="submit" value="Valider" name="submit_change" class="wholeGrid border">
+            </form>
+            
+
+          <?php endif; ?>
+            
+
         </div>
     </div>
 
@@ -44,7 +60,7 @@
             
             <?php if (isset($_SESSION['admin']) and $_SESSION['admin'] > 0): ?>
                 <a href="admin.php" class="margin">
-                    <input type="button" class="wholeWidth border" value="ADMIN"></button>
+                    <input type="button" class="wholeWidth border" value="ADMIN">
                 </a>
             <?php endif; ?>
         </div>

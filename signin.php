@@ -52,9 +52,16 @@ if (isset($_POST['pseudo']) and isset($_POST['psw']) and isset($_POST['psw2']) a
             'psw' => $hashedPsw
         ]);
 
-        $result = $statement->fetchAll();
+        $sqlQuerry = 'SELECT id_user FROM users WHERE `pseudo_user`= :pseudo';
+        $statement = $db->prepare($sqlQuerry);
+        $statement->execute([
+            'pseudo' => $pseudo
+        ]);
+
+        $result = $statement->fetch();
         
         $_SESSION['user'] = $pseudo;
+        $_SESSION['id_user'] = $result['id_user'];
         header('location: index.php');
     }
 }
