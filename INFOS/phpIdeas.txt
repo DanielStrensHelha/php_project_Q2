@@ -1,0 +1,13 @@
+Interface ADMIN avec une page pour :
+	- ce que les gens ont envoye dans contact, reponse par mail integre
+	- accord pour les posts dans forum, suppression automatique apres quelques jours de non approuve,...
+	- ajout facile de nouveaux heros
+
+Bases de donnees :
+	- Forum : date en date, name_user en string, message en string, approved en short
+	- Contact : date en date, name_user en string, email en string, message en string, image en image, answered en booleen
+	- Informations : hero en string, image en image, source en string, name_source en string
+	- (optionnel) Heros : name_hero en string, image en image
+	- (optionnel) Videos : video en string
+Cookies :
+	- Utiliser un cookie qui retient le theme (dark / light)

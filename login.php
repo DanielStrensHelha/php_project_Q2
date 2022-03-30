@@ -19,7 +19,7 @@ if (!isset($_SESSION['user'])){
             $_SESSION['user'] = $user['pseudo_user'];
             $_SESSION['admin'] = $user['admin_user'];
             $_SESSION['id_user'] = $user['id_user'];
-            header('location: login.php');
+            header('location: index.php');
 
         } else {
             $problem = 'wrong user or password';

@@ -9,11 +9,10 @@
 <header>
     <?php require("menu.php"); ?>
 </header>
-<body class="preload <?php  if(isset($_COOKIE['theme'])) echo $_COOKIE['theme']; else echo 'light'; ?>">
+<body class="preload <?php  if(isset($_COOKIE['theme'])) echo htmlspecialchars( $_COOKIE['theme']); else echo 'light'; ?>">
 
     <div class="grid justifyCenter wholeWidth">
         <div class="contentColor margin radius grid padding">
-
           <?php if ($showDetails) : ?>
 
             <form action="#" method="post" class="margin">

@@ -28,7 +28,7 @@
 <script>
     // Theme choice
     const themeButton = document.getElementById('theme');
-    themeButton.onclick = () => {
+    themeButton.addEventListener('click', function() {
         if (document.body.classList.contains('light')){
             document.body.classList.replace('light', 'dark');
             document.cookie = "theme = dark";
@@ -37,5 +37,5 @@
             document.body.classList.add('light');
             document.cookie = "theme = light";
         }
-    }
+    });
 </script>
