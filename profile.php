@@ -10,6 +10,7 @@ include_once('dbConnexion.php');
 
 //Show form
 $showDetails = true;
+$changingPseudo = $changingMail = false;
 
 //get user informations
 $sqlQuerry = 'SELECT * FROM users WHERE `id_user`=:idUser';
@@ -29,9 +30,14 @@ if (isset($_POST['submit_change'])) {
   // TODO insert verification that user account is not deleted
 
     switch ($_POST['submit_change']) {
-        case 'Valider' :
+        case 'Valider pseudo' :
         case 'Changer de pseudo':
             include_once('accountManagement/change_pseudo.php');
+            break;
+
+        case "Valider addresse mail" :
+        case "Changer d'addresse mail" :
+            include_once('accountManagement/change_email.php');
             break;
 
 

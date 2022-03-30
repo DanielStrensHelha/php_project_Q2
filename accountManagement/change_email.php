@@ -1,38 +1,38 @@
 <?php
-$changingPseudo = true;
+$changingMail = true;
 $showDetails = false;
 
-if (!empty($_POST['newPseudo'])) :
-    
-    if (strlen($_POST['newPseudo']) < 4)
-        $problem = 'Pseudo trop court !';
-    
-    else if (strlen($_POST['newPseudo']) > MAXLUSER)
-        $problem = 'Pseudo trop long !';
-    
+// If new mail chosen
+if (!empty($_POST['newMail'])) :
+
+    //Verifying new mail    
+    if (!filter_var($_POST['newMail'], FILTER_VALIDATE_EMAIL)) $problem = "email address invalid";
+        
+    //If mail is valid :
     else {
-        $sqlQuerry = 'SELECT id_user FROM users WHERE pseudo_user= :wantedPseudo';
+    //Verifying that the mail isn't already used
+        $sqlQuerry = 'SELECT id_user FROM users WHERE mail_user= :wantedMail';
         $statement = $db->prepare($sqlQuerry);
         $statement->execute([
-            'wantedPseudo' => $_POST['newPseudo']
+            'wantedMail' => $_POST['newMail']
         ]);
 
         $result = $statement->fetch();
-        print_r($result);
         if(!empty($result))
-            $problem = 'pseudo already taken';
+            $problem = "Addresse mail déja utilisé";
+
+        //If pseudo is valid and unused :
         else {
-            $sqlQuerry = 'UPDATE users SET pseudo_user=:newPseudo WHERE id_user=:idUser';
+            $sqlQuerry = 'UPDATE users SET mail_user=:newMail WHERE id_user=:idUser';
             $statement = $db->prepare($sqlQuerry);
             $statement->execute([
-                'newPseudo' => $_POST['newPseudo'],
+                'newMail' => $_POST['newMail'],
                 'idUser' => $_SESSION['id_user']
             ]);
 
-            $_SESSION['user'] = $_POST['newPseudo'];
-            $changingPseudo = false;
+            $mail = $_POST['newMail'];
+            $changingMail = false;
             $showDetails=true;
         }
     }
-
 endif;

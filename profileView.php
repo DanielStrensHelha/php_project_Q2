@@ -39,11 +39,19 @@
 
             <form action="#" method="post" class="grid doubleGrid smallGap margin">
                     <label for="newPseudo">Nouveau pseudo : </label>
-                    <input type="text" name="newPseudo" id="newPseudo" minlength="4" maxlength="">
-                    <input type="submit" value="Valider" name="submit_change" class="wholeGrid border">
+                    <input type="text" name="newPseudo" id="newPseudo" minlength="4" maxlength="<?php echo MAXLUSER; ?>">
+                    <input type="submit" value="Valider pseudo" name="submit_change" class="wholeGrid border">
                     <?php if(isset($problem)) echo '<span class="wholeGrid">Erreur : ' . $problem . '</span>'; ?>
             </form>
 
+          <?php elseif($changingMail) : ?>
+
+            <form action="#" method="post" class="grid doubleGrid smallGap margin">
+                    <label for="newMail">Nouvelle addresse mail : </label>
+                    <input type="mail" name="newMail" id="newMail" minlength="4">
+                    <input type="submit" value="Valider addresse mail" name="submit_change" class="wholeGrid border">
+                    <?php if(isset($problem)) echo '<span class="wholeGrid">Erreur : ' . $problem . '</span>'; ?>
+            </form>
 
           <?php endif; ?>
 
