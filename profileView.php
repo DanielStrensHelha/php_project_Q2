@@ -58,7 +58,7 @@
 
             <form action="#" method="post" class="grid doubleGrid smallGap margin">
                 <label for="oldPsw">Ancien mot de passe : </label>
-                <input type="password" name="oldPsw" id="oldPsw" placeholder="Old password">
+                <input type="password" name="oldPsw" id="oldPsw" placeholder="Old password" required>
 
                 <label for="newPsw">Nouveau mot de passe : </label>
                 <input type="password" name="newPsw" id="newPsw" placeholder="password" minlength="8" required>
@@ -71,7 +71,6 @@
             </form>
 
           <?php endif; ?>
-
 
         </div>
     </div>
