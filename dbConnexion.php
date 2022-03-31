@@ -1,7 +1,7 @@
 <?php
-include('locationDetails/db.php');
 
 try {
+    include('locationDetails/db.php');
     $db = new PDO(
         'mysql:host=localhost;dbname=' . $dbName . ';charset=utf8',
         $dbUser,
@@ -13,5 +13,5 @@ try {
     );
 }
 catch (PDOexception $e) {
-    die ($e->getMessage());
+    die('problem : ' . $e);
 }
