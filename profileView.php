@@ -57,14 +57,14 @@
           <?php elseif ($changingPassword) : ?>
 
             <form action="#" method="post" class="grid doubleGrid smallGap margin">
-                <label for="oldPsw">Ancien mot de passe : </label>
-                <input type="password" name="oldPsw" id="oldPsw" placeholder="Old password" required>
+                <label for="oldPsw" class="wholeGridPhone">Ancien mot de passe : </label>
+                <input type="password" name="oldPsw" id="oldPsw" placeholder="Old password" required class="wholeGridPhone">
 
-                <label for="newPsw">Nouveau mot de passe : </label>
-                <input type="password" name="newPsw" id="newPsw" placeholder="password" minlength="8" required>
+                <label for="newPsw" class="wholeGridPhone">Nouveau mot de passe : </label>
+                <input type="password" name="newPsw" id="newPsw" placeholder="password" minlength="8" required class="wholeGridPhone">
 
-                <label for="newPsw2">Répéter le nouveau mot de passe : </label>
-                <input type="password" name="newPsw2" id="newPsw2" placeholder="repeat password" minlength="8" required>
+                <label for="newPsw2" class="wholeGridPhone">Répéter le nouveau mot de passe : </label>
+                <input type="password" name="newPsw2" id="newPsw2" placeholder="repeat password" minlength="8" required class="wholeGridPhone">
 
                 <input type="submit" value="Valider nouveau mot de passe" name="submit_change" class="wholeGrid border">
                 <?php if(isset($problem)) echo '<span class="wholeGrid">Erreur : ' . $problem . '</span>'; ?>
