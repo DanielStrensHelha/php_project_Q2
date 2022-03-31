@@ -42,7 +42,7 @@ if (isset($_POST['submit_change'])) {
         
         case "Valider nouveau mot de passe":
         case "Changer de mot de passe":
-            include_once('change_password.php');
+            include_once('accountManagement/change_password.php');
             break;
     }
 }

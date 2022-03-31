@@ -38,7 +38,8 @@
 
             <form action="#" method="post" class="grid doubleGrid smallGap margin">
                     <label for="newPseudo">Nouveau pseudo : </label>
-                    <input type="text" name="newPseudo" id="newPseudo" minlength="4" maxlength="<?php echo MAXLUSER; ?>">
+                    <input type="text" name="newPseudo" id="newPseudo" minlength="4" maxlength="<?php echo MAXLUSER; ?>" required placeholder="new pseudo">
+                    
                     <input type="submit" value="Valider pseudo" name="submit_change" class="wholeGrid border">
                     <?php if(isset($problem)) echo '<span class="wholeGrid">Erreur : ' . $problem . '</span>'; ?>
             </form>
@@ -47,12 +48,27 @@
 
             <form action="#" method="post" class="grid doubleGrid smallGap margin">
                     <label for="newMail">Nouvelle addresse mail : </label>
-                    <input type="mail" name="newMail" id="newMail" minlength="4">
+                    <input type="mail" name="newMail" id="newMail" required placeholder="new email address">
+
                     <input type="submit" value="Valider addresse mail" name="submit_change" class="wholeGrid border">
                     <?php if(isset($problem)) echo '<span class="wholeGrid">Erreur : ' . $problem . '</span>'; ?>
             </form>
 
           <?php elseif ($changingPassword) : ?>
+
+            <form action="#" method="post" class="grid doubleGrid smallGap margin">
+                <label for="oldPsw">Ancien mot de passe : </label>
+                <input type="password" name="oldPsw" id="oldPsw" placeholder="Old password">
+
+                <label for="newPsw">Nouveau mot de passe : </label>
+                <input type="password" name="newPsw" id="newPsw" placeholder="password" minlength="8" required>
+
+                <label for="newPsw2">Répéter le nouveau mot de passe : </label>
+                <input type="password" name="newPsw2" id="newPsw2" placeholder="repeat password" minlength="8" required>
+
+                <input type="submit" value="Valider nouveau mot de passe" name="submit_change" class="wholeGrid border">
+                <?php if(isset($problem)) echo '<span class="wholeGrid">Erreur : ' . $problem . '</span>'; ?>
+            </form>
 
           <?php endif; ?>
 

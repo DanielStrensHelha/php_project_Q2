@@ -40,10 +40,10 @@ if (isset($_POST['pseudo']) and isset($_POST['psw']) and isset($_POST['psw2']) a
       }
 
     // Verifying user informations
-    else if ($psw < 8) $problem = 'password too short';
+    else if (strlen($psw) < 8) $problem = 'password too short';
     else if (strlen($pseudo) < 4) $problem = 'pseudo too short';
     else if (strlen($pseudo) >= 45) $problem = 'pseudo too long';
-    else if (preg_match("/^[a-zA-Z0-9\._]+$/", $pseudo) < 1) $problem = "pseudo can only contain letters, numbers or one of those special chars (. _)";
+    else if ( ! preg_match("/^[a-zA-Z0-9\._]+$/", $pseudo)) $problem = "pseudo can only contain letters, numbers or one of those special chars (. _)";
 
     else if ($psw != $psw2) $problem = "passwords don't match";
     else if (!filter_var($emailAddress, FILTER_VALIDATE_EMAIL)) $problem = "email address invalid";
