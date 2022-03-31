@@ -52,6 +52,8 @@
                     <?php if(isset($problem)) echo '<span class="wholeGrid">Erreur : ' . $problem . '</span>'; ?>
             </form>
 
+          <?php elseif ($changingPassword) : ?>
+
           <?php endif; ?>
 
 

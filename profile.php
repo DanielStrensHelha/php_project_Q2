@@ -10,7 +10,7 @@ include_once('dbConnexion.php');
 
 //Show form
 $showDetails = true;
-$changingPseudo = $changingMail = false;
+$changingPseudo = $changingMail = $changingPassword = false;
 
 //get user informations
 $sqlQuerry = 'SELECT * FROM users WHERE `id_user`=:idUser';
@@ -39,8 +39,11 @@ if (isset($_POST['submit_change'])) {
         case "Changer d'addresse mail" :
             include_once('accountManagement/change_email.php');
             break;
-
-
+        
+        case "Valider nouveau mot de passe":
+        case "Changer de mot de passe":
+            include_once('change_password.php');
+            break;
     }
 }
 
