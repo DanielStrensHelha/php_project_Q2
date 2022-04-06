@@ -19,7 +19,7 @@ CREATE TABLE Contact(
   `pic_path_cont` varchar(45),
   `id_user` INT NOT NULL,
   PRIMARY KEY(`id_contact`), 
-  FOREIGN KEY(`id_user`) REFERENCES Users(`id_user`) ,
+  FOREIGN KEY(`id_user`) REFERENCES users(`id_user`) ,
   UNIQUE KEY `pic_path_cont` (`pic_path_cont`)
 ); 
 ';
