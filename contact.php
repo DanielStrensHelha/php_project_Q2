@@ -45,7 +45,7 @@ if (isset($_POST['text_contact'])) :
         $statement = $db->prepare($sqlQuery);
         $statement->execute([
             ':text_cont' => $_POST['text_contact'],
-            ':pic_path_cont' => $keepFile ? $fileName . '.' . $extension : null,
+            ':pic_path_cont' => $keepFile ? $fileName . '.' . $extension : 'NULL',
             ':id_user' => $_SESSION['id_user']
         ]);
 
