@@ -53,8 +53,11 @@ if (isset($_POST['pseudo']) and isset($_POST['psw']) and isset($_POST['psw2']) a
 
         // hash password
         $hashedPsw = password_hash($psw, PASSWORD_BCRYPT, ['cost' => COST]);
+
+        // Insert into db 
         $sqlQuerry = "INSERT INTO users (pseudo_user, mail_user, psw_user) VALUES (:pseudo, :mail, :psw)";
         $statement = $db->prepare($sqlQuerry);
+
         $statement->execute([
             'pseudo' => $pseudo,
             'mail' => $emailAddress,
