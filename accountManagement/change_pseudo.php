@@ -7,9 +7,11 @@ if (!empty($_POST['newPseudo'])) :
 
     // Verifying the last date of change
     if (!empty($result['lastPseudoChange'])) {
-      if(date_diff($lastChange, $currentDate)->format("%a") < 30)
+      $diff = abs(date_diff($lastChange, $currentDate)->format("%a"));
+      $wait = PSEUDO_CHANGE - $diff;
+      if( $diff < PSEUDO_CHANGE)
         $problem = 'Veuillez attendre ' .
-                    PSEUDO_CHANGE - date_diff($lastChange, $currentDate)->format("%a") .
+                    $wait .
                     ' jours pour changer de pseudo à nouveau.';
     }
 

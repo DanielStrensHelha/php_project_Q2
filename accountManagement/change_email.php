@@ -36,4 +36,3 @@ if (!empty($_POST['newMail'])) :
         }
     }
 endif;
-

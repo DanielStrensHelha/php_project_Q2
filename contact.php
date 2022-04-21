@@ -4,6 +4,8 @@ include_once('init.php');
 $problem = false;
 $showForm = true;
 
+ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
+
 // Traitement du form
 if (isset($_POST['text_contact'])) :
 
@@ -29,7 +31,7 @@ if (isset($_POST['text_contact'])) :
 
 
                 // Déplacement du fichier
-                move_uploaded_file($_FILES['file_cont']['tmp_name'], 'uploads/' . $fileName . '.' . $extension);
+                move_uploaded_file($_FILES['file_cont']['tmp_name'], '/var/www/html/daniel/guitarheros/uploads/' . $fileName . '.' . $extension);
                 $keepFile = true;
             }
 
@@ -49,7 +51,7 @@ if (isset($_POST['text_contact'])) :
             ':id_user' => $_SESSION['id_user']
         ]);
 
-        header('Refresh:2; url=index.php');
+        // header('Refresh:2; url=index.php');
         $success = true;
         $showForm = false;
     }
