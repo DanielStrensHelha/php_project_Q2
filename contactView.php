@@ -23,7 +23,7 @@
 
                     <label for="file_cont">Image (optionnel) : </label>
                     <input type="file" name="file_cont" id="file_cont">
-                    <input type="submit" value="Envoyer le formulaire" class="wholeGrid border">
+                    <input type="submit" value="Envoyer le formulaire" class="wholeGrid border lightRadius button">
                 </form>
             <?php 
                 if ($problem) 

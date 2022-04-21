@@ -26,7 +26,7 @@
             <label for="emailAddress">Addresse mail : </label>
             <input type="email" placeholder="Email address"  name="emailAddress" required>
 
-            <input type="submit" value="S'inscrire" class="wholeGrid border">
+            <input type="submit" value="S'inscrire" class="wholeGrid border lightRadius button">
         </form>
     </div>
 </div>

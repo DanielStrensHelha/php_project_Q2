@@ -40,7 +40,7 @@
                     <label for="newPseudo">Nouveau pseudo : </label>
                     <input type="text" name="newPseudo" id="newPseudo" minlength="4" maxlength="<?php echo MAXLUSER; ?>" required placeholder="new pseudo">
                     
-                    <input type="submit" value="Valider pseudo" name="submit_change" class="wholeGrid border">
+                    <input type="submit" value="Valider pseudo" name="submit_change" class="wholeGrid border button lightRadius">
                     <?php if(isset($problem)) echo '<span class="wholeGrid">Erreur : ' . $problem . '</span>'; ?>
             </form>
 
@@ -50,7 +50,7 @@
                     <label for="newMail">Nouvelle addresse mail : </label>
                     <input type="mail" name="newMail" id="newMail" required placeholder="new email address">
 
-                    <input type="submit" value="Valider addresse mail" name="submit_change" class="wholeGrid border">
+                    <input type="submit" value="Valider addresse mail" name="submit_change" class="wholeGrid border button lightRadius">
                     <?php if(isset($problem)) echo '<span class="wholeGrid">Erreur : ' . $problem . '</span>'; ?>
             </form>
 
@@ -66,7 +66,7 @@
                 <label for="newPsw2" class="wholeGridPhone">Répéter le nouveau mot de passe : </label>
                 <input type="password" name="newPsw2" id="newPsw2" placeholder="repeat password" minlength="8" required class="wholeGridPhone">
 
-                <input type="submit" value="Valider nouveau mot de passe" name="submit_change" class="wholeGrid border">
+                <input type="submit" value="Valider nouveau mot de passe" name="submit_change" class="wholeGrid border button lightRadius">
                 <?php if(isset($problem)) echo '<span class="wholeGrid">Erreur : ' . $problem . '</span>'; ?>
             </form>
 
