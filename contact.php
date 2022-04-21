@@ -31,7 +31,8 @@ if (isset($_POST['text_contact'])) :
 
 
                 // Déplacement du fichier
-                move_uploaded_file($_FILES['file_cont']['tmp_name'], '/var/www/html/daniel/guitarheros/uploads/' . $fileName . '.' . $extension);
+                include('locationDetails/path.php');
+                move_uploaded_file($_FILES['file_cont']['tmp_name'], $path . $fileName . '.' . $extension);
                 $keepFile = true;
             }
 

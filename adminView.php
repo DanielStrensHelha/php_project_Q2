@@ -11,11 +11,17 @@
 </header>
 <body class="preload <?php  if(isset($_COOKIE['theme'])) echo $_COOKIE['theme']; else echo 'light'; ?>">
 
-<div class="grid">
-    <p class="HIGH">
-        Page ADMIN
-    </p>
-</div>
+    <div class="grid">
 
+        <div class="grid justifyCenter wholeWidth ">
+            <div class="contentColor radius margin">
+                <p class="centerX">Contacts</p>
+                <?php  ?>
+                
+            </div>
+        </div>
+    
+    </div>
+    
 </body>
 </html>
