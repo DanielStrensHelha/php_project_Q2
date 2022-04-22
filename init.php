@@ -3,7 +3,7 @@ if (!isset($_SESSION)) session_start();
 
 define('MAXLUSER', 45);
 define('COST', 10);
-define('PSEUDO_CHANGE', 30);
+define('PSEUDO_CHANGE', 15);
 define('CONT_BY_PAGE', 3);
 $nbrForm = CONT_BY_PAGE;
 
