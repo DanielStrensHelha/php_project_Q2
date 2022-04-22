@@ -55,7 +55,7 @@
             <?php endforeach; ?>
 
 
-            <?php if ($formCount / CONT_BY_PAGE > 0) : ?>
+            <?php if ( ceil($formCount / CONT_BY_PAGE) > 1) : ?>
                 <div class="contentColor radius margin">
                     <form action="#" method="get" class="flex spaceEven flexLign marginVert">
                     
