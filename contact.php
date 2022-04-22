@@ -10,7 +10,7 @@ ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_report
 if (isset($_POST['text_contact'])) :
 
     // Vérification de la taille du message
-    if (strlen($_POST['text_contact']) > 750)
+    if (strlen($_POST['text_contact']) > 2000)
         $problem = 'Votre message est trop long !';
     else {
 

@@ -77,9 +77,9 @@
 
     <div class="grid justifyCenter wholeWidth ">
         <div class="contentColor margin radius grid doubleGrid radius padding">
-            <form method="post" action="disconnect.php" class="margin"
-            <?php if (!isset($_SESSION['admin']) or $_SESSION['admin'] < 1) echo 'class="wholeGrid"'; ?>
-            >
+            <form method="post" action="disconnect.php" class="margin
+            <?php if (!isset($_SESSION['admin']) or $_SESSION['admin'] < 1) echo 'wholeGrid'; ?>
+            ">
                 <input type="submit" value="Déconnexion" name="disconnect" class="border">
             </form>
 

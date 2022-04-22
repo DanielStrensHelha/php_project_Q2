@@ -12,9 +12,13 @@
     --turquoise: #00e5b8;
     --lightTurquoise: #c8fcea;
     --verylightTurquoise: #f0fcf8;
+    --grey: #ededed;
+    --greyBtn : #8e8e8e;
 }
+
 /* Colors */
 .dark{
+    --borderPageNumber : var(--black);
     --bg: var(--darkPurple);
     --bg-2: var(--lightTurquoise);
     --topBanner-bg: var(--black);
@@ -27,6 +31,7 @@
     background-position: 1%;
 }
 .light{
+    --borderPageNumber : var(--greyBtn);
     --bg: var(--lightTurquoise);
     --bg-2: var(--darkPurple);
     --topBanner-bg: var(--turquoise);
@@ -42,6 +47,8 @@
 /* Specific */
 body{
     color: var(--text);
+    font-size: 16px;
+
     font-family: 'Roboto', sans-serif;
     margin: 0;
 
@@ -79,7 +86,7 @@ body{
     width: 100%;
 }
 .adminImageH {
-    height: 100%;
+    width: 50%;
 }
 
 /* Login and signin Form */
@@ -101,6 +108,9 @@ body{
 }
 
 /* General */
+.marginVert {
+    margin: 10px 0;
+}
 .centerY{
     align-content: center;
 }
@@ -110,6 +120,18 @@ body{
 .grid{
     display: grid;
 }
+
+.flex{
+    display: flex;
+}
+.spaceEven{
+    justify-content: space-evenly;
+    align-content: center;
+}
+.flexLign{
+    flex-wrap: nowrap;
+}
+
 .topBanner a{
     text-decoration: none;
 }
@@ -182,6 +204,13 @@ h1{
     padding: 4px 0;
     margin-top: 20px;
 }
+.pageNumber {
+    border: 2px solid var(--borderPageNumber);
+    background-color: var(--grey);
+    color: var(--black);
+    height: 25px;
+    width: 25px;
+}
 
 /* Phone */
 @media screen and (max-width: 900px) {
@@ -193,7 +222,7 @@ h1{
         grid-column-end: span 2;
     }
     body, .loginForm input, .signinForm input{
-        font-size: 13px;
+        font-size: 16px;
     }
     .topBanner label{
         display: block;
