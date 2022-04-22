@@ -5,6 +5,7 @@ define('MAXLUSER', 45);
 define('COST', 10);
 define('PSEUDO_CHANGE', 30);
 define('CONT_BY_PAGE', 3);
+$nbrForm = CONT_BY_PAGE;
 
 ?>
 <script src='https://kit.fontawesome.com/7a200c6812.js' crossorigin='anonymous'></script>

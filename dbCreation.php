@@ -15,11 +15,10 @@ $sqlTableCreation = 'CREATE TABLE `users` (
 CREATE TABLE Contact( 
   `id_contact` int(11) NOT NULL AUTO_INCREMENT, 
   `text_cont` TEXT, 
-  `date_heure_cont` DATETIME, 
+  `date_time_cont` DATETIME, 
   `pic_path_cont` varchar(45),
   `id_user` INT NOT NULL,
   PRIMARY KEY(`id_contact`), 
-  FOREIGN KEY(`id_user`) REFERENCES users(`id_user`) ,
-  UNIQUE KEY `pic_path_cont` (`pic_path_cont`)
+  FOREIGN KEY(`id_user`) REFERENCES users(`id_user`)
 ); 
 ';

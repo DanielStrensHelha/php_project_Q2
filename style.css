@@ -71,6 +71,17 @@ body{
     margin: auto;
 }
 
+/* admin page */
+.contactAdmin {
+    width: 50%;
+}
+.adminImageW {
+    width: 100%;
+}
+.adminImageH {
+    height: 100%;
+}
+
 /* Login and signin Form */
 .loginForm, .signinForm{
     width: auto;
@@ -80,7 +91,7 @@ body{
     font-size: 15px;
 }
 .doubleGrid{
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
 }
 .tripleGrid {
     grid-template-columns: repeat(3, 1fr);
@@ -121,7 +132,10 @@ a{
     width: 100%;
 }
 .justifyCenter{
-    justify-content: center;
+    justify-items: center;
+}
+.justifyStretch {
+    justify-items: stretch;
 }
 .contentColor{
     background-color: var(--contentColor);
@@ -201,6 +215,9 @@ h1{
     .wholeGridPhone{
         grid-column-start: 1;
         grid-column-end: -1;
+    }
+    .contactAdmin {
+        width: 90%;
     }
 }
 

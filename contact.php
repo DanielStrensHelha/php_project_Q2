@@ -43,7 +43,7 @@ if (isset($_POST['text_contact'])) :
 
         // Insertion SQL
         include_once('dbConnexion.php');
-        $sqlQuery = 'INSERT INTO contact (text_cont, date_heure_cont, pic_path_cont, id_user)
+        $sqlQuery = 'INSERT INTO contact (text_cont, date_time_cont, pic_path_cont, id_user)
                      VALUES(:text_cont, NOW(), :pic_path_cont, :id_user)';
         $statement = $db->prepare($sqlQuery);
         $statement->execute([
