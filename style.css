@@ -79,7 +79,7 @@ body{
 }
 
 /* admin page */
-.contactAdmin {
+.comfortWidth {
     width: 50%;
 }
 .adminImageW {
@@ -212,6 +212,10 @@ h1{
     width: 25px;
 }
 
+.topBorder {
+    border-top: 2px solid var(--text);
+}
+
 /* Phone */
 @media screen and (max-width: 900px) {
     .menu{
@@ -245,7 +249,7 @@ h1{
         grid-column-start: 1;
         grid-column-end: -1;
     }
-    .contactAdmin {
+    .comfortWidth {
         width: 90%;
     }
 }

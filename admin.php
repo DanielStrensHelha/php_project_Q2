@@ -8,35 +8,24 @@ if (!isset($_SESSION['admin']) or $_SESSION['admin'] < 1){
     die();
 }
 
+$contactDetails = false;
+
 require('init.php');
 require('dbConnexion.php');
 require('locationDetails/path.php');
 
-// getting the contact forms
-$sqlQuerry = "SELECT COUNT(*) FROM contact";
-$statement = $db->prepare($sqlQuerry);
-$statement -> execute();
+require('adminModel.php');
 
-$formCount = $statement->fetch()['COUNT(*)'];
+if (!empty($_POST['details'])) {
+    $selectedCont = $_POST['details'];
+    require('adminViewDetails.php');
+    
+    if (1);
 
-// getting the forms needed
-$pages = ceil($formCount / CONT_BY_PAGE );
-$minForm = 
-    (isset($_GET['page'])) ?
-    ($_GET['page']-1) * CONT_BY_PAGE :
-    0;
+}
 
-$page = (isset($_GET['page']) and $_GET['page'] > 0) ? $_GET['page'] : 1;
+else {
+    require("adminView.php");
+}
 
-$sqlQuerry = 'SELECT * FROM contact ORDER BY date_time_cont LIMIT :minForm, :nbrForm';
-$statement = $db -> prepare($sqlQuerry);
-
-$statement -> bindParam('minForm', $minForm, PDO::PARAM_INT);
-$statement -> bindParam('nbrForm', $nbrForm, PDO::PARAM_INT);
-
-$statement -> execute();
-
-$forms = $statement->fetchAll();
-
-require("adminView.php");
 require('clot.php');

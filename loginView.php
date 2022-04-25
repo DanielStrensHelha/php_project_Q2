@@ -28,7 +28,7 @@
             </form>
         </div>
 
-        <a href="signin.php" class="contentColor radius margin centerX">
+        <a href="signin.php" class="contentColor radius margin centerX padding">
             <p>Pas encore membre</p>
         </a>
     </div>
