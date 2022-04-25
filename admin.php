@@ -19,9 +19,16 @@ require('adminModel.php');
 if (!empty($_POST['details'])) {
     $selectedCont = $_POST['details'];
     require('adminViewDetails.php');
-    
-    if (1);
+}
 
+else if (!empty($_POST['delete']) and $_POST['delete'] === 'Confirm delete' and isset($_POST['selected'])) {
+    $sqlQuerry = "DELETE FROM contact WHERE id_contact = :selected";
+    $statement = $db->prepare($sqlQuerry);
+    $statement-> execute([
+        'selected' => $_POST['selected']
+    ]);
+    $lastPage = (isset($_GET['page']) and is_numeric($_GET['page'])) ? $_GET['page'] : 1;
+    header('Location: admin.php?page=' . $lastPage );
 }
 
 else {

@@ -42,5 +42,7 @@ if (!empty($_POST['details']) and isset($_POST['selected'])) {
         ]);
 
         $detailedUser = $statement->fetch();
+
+        $lastPseudoChange = date_create($detailedUser['lastPseudoChange'], timezone_open('Europe/Brussels'));
     }
 }

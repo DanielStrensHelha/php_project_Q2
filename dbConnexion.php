@@ -3,7 +3,7 @@
 try {
     include('locationDetails/db.php');
     $db = new PDO(
-        'mysql:host=localhost;dbname=' . $dbName . ';charset=utf8',
+        'mysql:host=localhost;dbname=' . $dbName . ';charset=utf8mb4',
         $dbUser,
         $dbPassword,
         [

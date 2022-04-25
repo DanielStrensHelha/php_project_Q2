@@ -16,7 +16,8 @@
     <div class="grid wholeWidth justifyCenter">
 
         <div class="grid comfortWidth justifyStretch">   
-            <?php        
+            <?php
+            if ($_POST['details'] === "Details") :
                 if ($detailedForm['pic_path_cont'] == 'NULL') {
                     $text_width = 'wholeGrid';
                     $showPic = false;
@@ -64,8 +65,8 @@
                 <p>Last pseudo change : </p>
                 <p><?php 
                     if ($detailedUser['lastPseudoChange'] != NULL)
-                        echo date("Y / m / d", (int)$detailedUser['lastPseudoChange']); 
-                    print_r($detailedUser);
+                        echo date_format($lastPseudoChange, "Y / m / d");
+                    else echo 'NONE';
                     ?>
                 </p>
             </div>
@@ -76,10 +77,25 @@
                     <a href="mailto: <?php echo htmlspecialchars($detailedUser['mail_user']); ?>">
                         Answer by mail
                     </a>
-                    <input type="submit" value="Delete" name="details">
+                    <input type="submit" value="Delete" name="details" class="border">
+                    <input type="submit" value="Go back" class="border">
                 </form>
             </div>
+
+            <?php elseif($_POST['details'] === "Delete") : ?>
             
+                <div class="contentColor radius margin padding grid centerX">
+                    <form action="#" method="post">
+                        <p>Are you sure you want to delete this contact form ?</p>
+                        
+                        <input type="hidden" name="selected" value= "<?php echo $detailedForm['id_contact']; ?>">
+                        <input type="submit" value="Confirm delete" class="button border lightRadius" name="delete">
+                        
+                        <input type="submit" value="Go back" class="border button lightRadius">
+                    </form>
+                </div>
+
+            <?php endif; ?>
         </div>
     
     </div>

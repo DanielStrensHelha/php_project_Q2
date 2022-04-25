@@ -55,8 +55,8 @@
                 
                     <form action="#" method="post" class="flex spaceEven padding margin topBorder">
                         <input type="hidden" name="selected" value= "<?php echo $form['id_contact']; ?>">
-                        <input type="submit" value="Details" name="details">
-                        <input type="submit" value="Delete" name="details">
+                        <input type="submit" value="Details" name="details" class="border">
+                        <input type="submit" value="Delete" name="details" class="border">
                     </form>
                 
                 </div>
