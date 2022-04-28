@@ -34,25 +34,30 @@
                 <p class="<?php echo $text_width; ?>">
                     <?php echo htmlspecialchars($detailedForm['text_cont']); ?>
                 </p>
-
                 <?php
                 if ($showPic) : ?>
-                    <?php 
-                    $infos = getimagesize($path . $detailedForm['pic_path_cont']);
-                    $adminClass = ($infos[0] > $infos[1]) ? 'adminImageW' : 'adminImageH';
-                    ?>
+                    <div>
+                        <?php 
+                        $infos = getimagesize($path . $detailedForm['pic_path_cont']);
+                        $adminClass = ($infos[0] > $infos[1]) ? 'adminImageW' : 'adminImageH';
+                        ?>
 
-                    <img 
-                    src="<?php echo $path . $detailedForm['pic_path_cont']; ?>" 
-                    alt="picture not found, id : <?php echo $form['pic_path_cont']; ?>" 
-                    class="<?php echo $adminClass; ?> wholeGridPhone"
-                    >
+                        <img 
+                        src="<?php echo $path . $detailedForm['pic_path_cont']; ?>" 
+                        alt="picture not found, id : <?php echo $form['pic_path_cont']; ?>" 
+                        class="<?php echo $adminClass; ?> wholeGridPhone"
+                        ><br>
+                        <?php echo htmlspecialchars($detailedForm['pic_path_cont']); ?>
+                    </div>
                 <?php endif; ?>
                 </div>
             
             </div>
             
             <div class="contentColor radius margin padding grid doubleGrid">
+                <p>Posted on : </p>
+                <p><?php echo date_format($postedOn, "Y / m / d") . " ; " . $daysAgo . " days ago"; ?></p>
+
                 <p>Pseudo user : </p>
                 <p><?php echo htmlspecialchars($detailedUser['pseudo_user']); ?></p>
 
@@ -74,6 +79,7 @@
             <div class="contentColor radius margin padding">
                 <form action="#" method="post" class="flex spaceEven padding margin">
                     <input type="hidden" name="selected" value= "<?php echo $detailedForm['id_contact']; ?>">
+                    
                     <a href="mailto: <?php echo htmlspecialchars($detailedUser['mail_user']); ?>">
                         Answer by mail
                     </a>

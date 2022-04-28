@@ -35,6 +35,10 @@ if (!empty($_POST['details']) and isset($_POST['selected'])) {
         
         $detailedForm = $statement->fetch();
 
+        $postedOn = date_create($detailedForm['date_time_cont'], timezone_open('Europe/Brussels'));
+
+
+        // getting user informations
         $sqlQuerry = 'SELECT id_user, pseudo_user, mail_user, deleted_user, lastPseudoChange FROM users WHERE id_user = :userId';
         $statement = $db -> prepare($sqlQuerry);
         $statement -> execute([
@@ -44,5 +48,8 @@ if (!empty($_POST['details']) and isset($_POST['selected'])) {
         $detailedUser = $statement->fetch();
 
         $lastPseudoChange = date_create($detailedUser['lastPseudoChange'], timezone_open('Europe/Brussels'));
+    
+        
+    
     }
 }

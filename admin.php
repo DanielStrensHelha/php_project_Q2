@@ -18,6 +18,7 @@ require('adminModel.php');
 
 if (!empty($_POST['details'])) {
     $selectedCont = $_POST['details'];
+    $daysAgo = date_diff($postedOn, date_create(date("Y-m-d")))->format("%a");
     require('adminViewDetails.php');
 }
 
