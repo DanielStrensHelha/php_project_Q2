@@ -18,8 +18,8 @@
         <?php if(!empty($_SESSION['user'])) : ?>
             <?php if ($showForm) : ?>
                 <form method="post" action="#" class="grid doubleGrid margin padding smallGap" enctype="multipart/form-data">
-                    <label for="text_contact">Votre message : </label>
-                    <textarea name="text_contact" id="text_contact" cols="45" rows="10" required maxlength="2000" placeholder="Votre message ici..."></textarea>
+                    <label for="text_contact" class="wholeGridPhone">Votre message : </label>
+                    <textarea name="text_contact" id="text_contact" cols="45" rows="10" required maxlength="2000" placeholder="Votre message ici..." class="wholeGridPhone"></textarea>
 
                     <label for="file_cont">Image (optionnel) : </label>
                     <input type="file" name="file_cont" id="file_cont">

@@ -20,7 +20,7 @@ if (isset($_POST['text_contact'])) :
             // Vérification de l'extension du fichier
             $fileInfos = pathinfo($_FILES['file_cont']['name']);
             $extension = $fileInfos['extension'];
-            $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'PNG', 'JPEG'];
+            $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'PNG', 'JPEG', 'JPG'];
             
             if (in_array($extension, $allowedExtensions)) {
                 

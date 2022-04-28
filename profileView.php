@@ -19,16 +19,16 @@
                 <fieldset class="grid tripleGrid smallGap">
                 <legend>Informations personnelles</legend>
 
-                    <label for="pseudo">pseudo : </label>
-                    <span class="color2"><?php echo htmlspecialchars($_SESSION['user']); ?></span>
+                    <label for="pseudo" class="wholeGridPhone">pseudo : </label>
+                    <span class="color2" class="wholeGridPhone"><?php echo htmlspecialchars($_SESSION['user']); ?></span>
                     <input type="submit" value="Changer de pseudo" name="submit_change" class="border wholeGridPhone">
 
-                    <label for="mail">mail : </label>
-                    <span class="color2"><?php echo htmlspecialchars($mail); ?></span>
+                    <label for="mail" class="wholeGridPhone">mail : </label>
+                    <span class="color2" class="wholeGridPhone"><?php echo htmlspecialchars($mail); ?></span>
                     <input type="submit" value="Changer d'addresse mail" name="submit_change" class="border wholeGridPhone">
 
-                    <label for="psw">Mot de passe : </label>
-                    <span class="color2">********</span>
+                    <label for="psw" class="wholeGridPhone">Mot de passe : </label>
+                    <span class="color2" class="wholeGridPhone">********</span>
                     <input type="submit" value="Changer de mot de passe" name="submit_change" class="border wholeGridPhone">
 
                 </fieldset>

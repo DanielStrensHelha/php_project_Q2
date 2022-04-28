@@ -44,12 +44,17 @@ catch (PDOexception $e) {
             It seems like you don't have a 'guitarheros' SQL data base OR don't have the required tables in it. <br><br>
             You can fix this issue by opening xampp (if you forgot to) and make sure to add a 'guitarheros' data base. <br><br>
             You need to add a folder named 'locationDetails' at the root of this project directory <br>
-            Then add a file named 'db.php' and type <br>
+            You also need to add a folder 'uploads' which will contain the uploaded images of the website. This folder can be anywhere<br>
+            Then add a file named 'db.php' in 'locationDetails' and type <br>
             &lt;?php <br>
             $dbPassword = ' ';<br>
             $dbName = 'guitarheros'; <br>
             $dbUser = 'root'; <br><br>
             Replace the password and user if needed <br><br>
+            Then add a file named 'path.php' still in 'locationDetails' and type<br>
+            &lt;?php <br>
+            $path = 'uploads/';<br><br>
+            Replace 'uploads/' with the path (absolute or relative) to the folder where you store the uploaded files.
             
             To create the necessary tables, click on this button :
             <form action="#" method="post">
