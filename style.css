@@ -108,6 +108,9 @@ body{
 }
 
 /* General */
+textarea {
+    resize: none;
+}
 .marginVert {
     margin: 10px 0;
 }

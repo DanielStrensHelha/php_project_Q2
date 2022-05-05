@@ -26,7 +26,6 @@ if (!isset($_SESSION['user'])){
         }
     }
 }
-
 else {
     $pageTitle = 'Profile';
     header('location: profile.php');
