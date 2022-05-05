@@ -46,7 +46,7 @@ $sqlTableCreation =
   CREATE TABLE contact(
   `id_contact` int(11) NOT NULL AUTO_INCREMENT,
   `text_cont` TEXT,
-  `date_heure_cont` DATETIME,
+  `date_time_cont` DATETIME,
   `pic_path_cont` VARCHAR(45),
   `id_user` int(11) NOT NULL,
   PRIMARY KEY(`id_contact`),
