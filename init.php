@@ -5,6 +5,7 @@ define('MAXLUSER', 45);
 define('COST', 10);
 define('PSEUDO_CHANGE', 15);
 define('CONT_BY_PAGE', 3);
+define('POSTS_BY_PAGE', 5);
 $nbrForm = CONT_BY_PAGE;
 
 ?>

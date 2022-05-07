@@ -39,8 +39,8 @@
                     </p>
 
                     <?php
-                    if ($showPic) : ?>
-                        <?php 
+                    if ($showPic) :
+                        
                         $infos = getimagesize($path . $form['pic_path_cont']);
                         $adminClass = ($infos[0] > $infos[1]) ? 'adminImageW' : 'adminImageH';
                         ?>
