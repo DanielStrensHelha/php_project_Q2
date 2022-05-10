@@ -4,12 +4,14 @@ if($browsePosts) {
     // get posts from data base
     include('dbConnexion.php');
 
-    $sqlQuerry =    "SELECT *, AVG(appreciation.likes) AS likes
+    // Get the guitarists
+    $sqlQuerry =    "SELECT *, AVG(appreciation.likes), COUNT(guitarist.id_guitarist) AS likes
                     FROM guitarist
                     LEFT JOIN appreciation ON guitarist.id_guitarist = appreciation.id_guitarist
                     GROUP BY guitarist.id_guitarist
                     ORDER BY AVG(appreciation.likes) DESC
-                    LIMIT :startPost, :numberOfPosts";
+                    LIMIT :startPost, :numberOfPosts;
+                    ";
     
     $statement = $db->prepare($sqlQuerry);
     
@@ -19,4 +21,12 @@ if($browsePosts) {
     $statement->execute();
 
     $posts = $statement->fetchAll();
+
+    // get the count of posts to show
+    $sqlQuerry =    "SELECT COUNT(*) FROM guitarist;";
+    
+    $statement = $db->prepare($sqlQuerry);
+    $statement->execute();
+
+    $guitaristCount = $statement->fetch()['COUNT(*)'];
 }

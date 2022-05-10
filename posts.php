@@ -19,10 +19,11 @@ if (!isset($_GET['id_guitarist'])) {
     $browsePosts = true;
 
     // Verify and set the page number
-    $page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
+    $page = (isset($_GET['page']) and $_GET['page'] > 0) ? $_GET['page'] : 1;
 
 }
 
+// Gatter informations
 include ('postsModel.php');
 
 // Making the description shorter
@@ -34,5 +35,10 @@ foreach($posts as $post)
 include('locationDetails/path.php');
 
 // If browsing
+$pages = ceil($guitaristCount / POSTS_BY_PAGE);
+
+// getting the forms needed for current page
+$minForm = CONT_BY_PAGE * ($page-1);
+
 if ($browsePosts)
     include("postsViewBrowse.php");
