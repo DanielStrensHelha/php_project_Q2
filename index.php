@@ -37,9 +37,7 @@ catch (PDOexception $e) {
         $stm->execute();
         echo '<br><br>tables Created ! Refresh the page to continue';
 
-
     else :
-
 
     ?>
     <div>

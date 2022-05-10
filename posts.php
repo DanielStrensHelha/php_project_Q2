@@ -6,7 +6,7 @@ FROM
     table
 WHERE
     columnName REGEXP pattern
-*/ 
+*/
 
 $pageTitle = 'Posts';
 include('init.php');
@@ -21,20 +21,18 @@ if (!isset($_GET['id_guitarist'])) {
     // Verify and set the page number
     $page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
 
-
 }
-
-
 
 include ('postsModel.php');
+
 // Making the description shorter
 $desc = array();
-foreach($posts as $post) {
+foreach($posts as $post)
+   $desc[] = substr($post['wiki_hero'], 0, 400) . '...';
 
-   $desc[] = substr($post['wiki_hero'], 0, 500) . '...';
-
-}
-
-
+// Include path for the images
 include('locationDetails/path.php');
-include("postsView.php");
+
+// If browsing
+if ($browsePosts)
+    include("postsViewBrowse.php");
