@@ -13,8 +13,9 @@
             <a href="index.php" class="belleza lightRadius"><p>Index</p></a>
             <a href="contact.php" class="belleza lightRadius"><p>Contact</p></a>
             <a href="posts.php" class="belleza lightRadius"><p>Posts</p></a>
-            <form method="post" action="search.php" class="grid centerY">
-                <input type="search" placeholder="Search hero by name" name="Research" class="lightRadius">
+
+            <form method="get" action="posts.php" class="grid centerY">
+                <input type="search" placeholder="Rechercher guitariste / style" name="Research" class="lightRadius">
             </form>
 
         </div>

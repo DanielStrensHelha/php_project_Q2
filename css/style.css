@@ -115,7 +115,7 @@ textarea {
     margin: 10px 0;
 }
 .centerY{
-    align-content: center;
+    align-items: center;
 }
 .centerX{
     text-align: center;
@@ -220,6 +220,9 @@ h1{
     border-top: 2px solid var(--text);
 }
 
+.noMargin{
+    margin: 0;
+}
 /* Phone */
 @media screen and (max-width: 900px) {
     .menu{

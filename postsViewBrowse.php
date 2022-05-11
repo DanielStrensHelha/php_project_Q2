@@ -21,18 +21,31 @@
             </div>
 
             <div class="grid centerX contentColor radius margin padding">
-                <form action="#" method="post" class="doubleGrid grid">
-                    <label for="Research" class="wholeGridPhone">Search by name : </label>
-                    <input type="text" name="search" id="Research" class="wholeGridPhone" placeholder="Guitarist name" maxlength="50">
 
-                    <input type="submit" value="Rechercher" class="button wholeGrid">
-                    
-                    <div class="wholeGrid margin">Ou trier par</div>
-
-                    <label for="LikeRatio">Ratio de like</label>
-                    <input type="radio" name="sort" id="LikeRatio" value="like_ratio" checked>
-
+                <form action="#" method="get" class="tripleGrid grid centerY">
+                    <label for="Research" class="wholeGridPhone belleza">Chercher guitariste / style: </label>
+                    <input type="text" name="search" id="Research" placeholder="Guitarist name" maxlength="50"
+                    class="wholeGridPhone margin"
+                    value="<?php if(isset($_GET['search'])) echo htmlspecialchars($_GET['search']); ?>"                   
+                    >
+                    <input type="submit" value="Rechercher" class="button wholeGridPhone noMargin">
                 </form>
+
+                <form action="#" method="post" class="grid doubleGrid smallGap">
+                    <div class="wholeGrid margin belleza">Ou trier par</div>
+
+                    <label for="likeRatioSort">Ratio de like</label>
+                    <input type="radio" name="sort" id="likeRatioSort" value="like_ratio" checked class="wholeWidth">
+                
+                    <label for="nameSort">Nom</label>
+                    <input type="radio" name="sort" id="nameSort" value="name_sort" class="wholeWidth">
+
+                    <label for="mostCommentedsort">Les plus commentés</label>
+                    <input type="radio" name="sort" id="mostCommentedsort" value="most_commented_sort" class="wholeWidth">
+
+                    <input type="submit" value="Appliquer les changements" class="button wholeGrid">
+                </form>
+
             </div>
 
             <?php
