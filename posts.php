@@ -39,10 +39,14 @@ foreach($posts as $post)
 include('locationDetails/path.php');
 
 // If browsing
-$pages = ceil($guitaristCount / POSTS_BY_PAGE);
+if ($browsePosts) {
+    $pages = ceil($guitaristCount / POSTS_BY_PAGE);
 
-// getting the forms needed for current page
-$minForm = CONT_BY_PAGE * ($page-1);
+    // getting the forms needed for current page
+    $minForm = CONT_BY_PAGE * ($page-1);
 
-if ($browsePosts)
+    $checked = (isset($_POST['sort'])) ? true : false;
+                    
+
     include("postsViewBrowse.php");
+}

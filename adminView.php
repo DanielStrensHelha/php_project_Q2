@@ -27,7 +27,9 @@
                 }
                 else {
                     $text_width = 'wholeGridPhone';
-                    $showPic = true;
+
+
+                    $showPic = file_exists($path . $form['pic_path_cont']) ? true : false;
                 }
                 
                 // foreach continues
@@ -50,6 +52,11 @@
                         alt="picture not found, id : <?php echo $form['pic_path_cont']; ?>" 
                         class="<?php echo $adminClass; ?> wholeGridPhone"
                         >
+
+                    <?php elseif ($text_width=== 'wholeGridPhone' and !$showPic) :
+                        echo '<p class="wholeGridPhone">Pictuer not found</p>';
+                        
+                    ?>
                     <?php endif; ?>
                     </div>
                 

@@ -28,22 +28,31 @@
                     class="wholeGridPhone margin"
                     value="<?php if(isset($_GET['search'])) echo htmlspecialchars($_GET['search']); ?>"                   
                     >
-                    <input type="submit" value="Rechercher" class="button wholeGridPhone noMargin">
+                    <input type="submit" value="Rechercher" class="button wholeGridPhone noMargin border">
                 </form>
 
                 <form action="#" method="post" class="grid doubleGrid smallGap">
                     <div class="wholeGrid margin belleza">Ou trier par</div>
 
                     <label for="likeRatioSort">Ratio de like</label>
-                    <input type="radio" name="sort" id="likeRatioSort" value="like_ratio" checked class="wholeWidth">
+                    <input type="radio" name="sort" id="likeRatioSort" class="wholeWidth"
+                    value="like_ratio"
+                    <?php if( !$checked or $_POST['sort'] === "like_ratio") echo "checked"; ?>
+                    >
                 
                     <label for="nameSort">Nom</label>
-                    <input type="radio" name="sort" id="nameSort" value="name_sort" class="wholeWidth">
+                    <input type="radio" name="sort" id="nameSort" class="wholeWidth"
+                    value="name_sort"
+                    <?php if($checked and $_POST['sort'] === "name_sort") echo "checked"; ?>
+                    >
 
                     <label for="mostCommentedsort">Les plus commentés</label>
-                    <input type="radio" name="sort" id="mostCommentedsort" value="most_commented_sort" class="wholeWidth">
+                    <input type="radio" name="sort" id="mostCommentedsort" class="wholeWidth"
+                    value="most_commented_sort"
+                    <?php if($checked and $_POST['sort'] === "most_commented_sort") echo "checked"; ?>
+                    >
 
-                    <input type="submit" value="Appliquer les changements" class="button wholeGrid">
+                    <input type="submit" value="Appliquer les changements" class="button wholeGrid border">
                 </form>
 
             </div>
