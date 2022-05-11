@@ -49,10 +49,14 @@
             </div>
 
             <?php
-            foreach($posts as $i => $post) : 
 
-                $infos = getimagesize($path . $post['thumbnail_guit']);
-                $adminClass = ($infos[0] > $infos[1]) ? 'adminImageW' : 'adminImageH';
+            foreach($posts as $i => $post) :
+
+                if (file_exists($path . $post['thumbnail_guit'])) {
+                    $infos = getimagesize($path . $post['thumbnail_guit']);
+                    $adminClass = ($infos[0] > $infos[1]) ? 'adminImageW' : 'adminImageH';
+                }
+                else $adminClass = 'adminImageW';
                 
                 ?>
                 <div class="contentColor radius margin padding grid doubleGrid">
@@ -71,7 +75,7 @@
                     <div class="grid centerY justifyCenter">
                         <img 
                             src="<?php echo $path . $post['thumbnail_guit']; ?>" 
-                            alt="picture not found; ?>" 
+                            alt="picture not found" 
                             class="<?php echo $adminClass; ?> wholeGridPhone"
                         >
                     </div>
