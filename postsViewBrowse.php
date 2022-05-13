@@ -32,7 +32,7 @@
                 </form>
 
                 <form action="#" method="post" class="grid doubleGrid smallGap">
-                    <div class="wholeGrid margin belleza">Ou trier par</div>
+                    <div class="wholeGrid margin belleza">Trier par</div>
 
                     <label for="likeRatioSort">Ratio de like</label>
                     <input type="radio" name="sort" id="likeRatioSort" value="like_ratio" checked class="wholeWidth">
