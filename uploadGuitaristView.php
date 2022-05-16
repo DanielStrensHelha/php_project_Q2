@@ -61,8 +61,7 @@ Tsobatso est un jeune guitariste.
 
                     <label for="descriptionLive" class="wholeGridPhone">Description du live</label>
                     <textarea name="descriptionLive" id="descriptionLive" cols="30" rows="10" class="wholeGridPhone" 
-                    placeholder="Vidéo de Tsobatso en live au mercury open, 2021">
-                    <?php if(isset($_POST['descriptionLive'])) echo htmlspecialchars($_POST['descriptionLive']); ?>
+                    placeholder="Vidéo de Tsobatso en live au mercury open, 2021"><?php if(isset($_POST['descriptionLive'])) echo htmlspecialchars($_POST['descriptionLive']); ?>
                     </textarea>
 
                     <label for="interview" class="wholeGridPhone">Interview youtube</label>
@@ -72,8 +71,7 @@ Tsobatso est un jeune guitariste.
 
                     <label for="descriptionInterview">Description de l'interview</label>
                     <textarea name="descriptionInterview" id="descriptionInterview" class="wholeGridPhone" cols="30" rows="10" 
-                    placeholder="Interview de Tsobatso par Chris rock...">
-                    <?php if(isset($_POST['descriptionInterview'])) echo htmlspecialchars($_POST['descriptionInterview']); ?>
+                    placeholder="Interview de Tsobatso par Chris rock..."><?php if(isset($_POST['descriptionInterview'])) echo htmlspecialchars($_POST['descriptionInterview']); ?>
                     </textarea>
 
                     <label for="photo1" class="wholeGridPhone">Photo du guitariste</label>
