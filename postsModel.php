@@ -5,7 +5,7 @@ if($browsePosts) {
     include('dbConnexion.php');
 
     // Get the guitarists
-    $sqlQuerry =    "SELECT *, AVG(appreciation.likes), COUNT(guitarist.id_guitarist) AS likes
+    $sqlQuerry =    "SELECT thumbnail_guit, guitarist.id_guitarist, name_guit, wiki_hero, AVG(appreciation.likes) AS likes
                     FROM guitarist
                     LEFT JOIN appreciation ON guitarist.id_guitarist = appreciation.id_guitarist
                     GROUP BY guitarist.id_guitarist

@@ -47,6 +47,5 @@ if ($browsePosts) {
 
     $checked = (isset($_POST['sort'])) ? true : false;
                     
-
     include("postsViewBrowse.php");
 }
