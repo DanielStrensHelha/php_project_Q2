@@ -76,7 +76,7 @@
                             </a>
                         </h2>
                         
-                        <p>
+                        <p class="wordBreak">
                             <?php echo htmlspecialchars($desc[$i]); ?>
                         </p>
                     </div>    

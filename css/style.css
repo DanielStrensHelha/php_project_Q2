@@ -80,7 +80,7 @@ body{
 
 /* admin page */
 .comfortWidth {
-    width: 50%;
+    width: 65%;
 }
 .adminImageW {
     width: 100%;
@@ -222,6 +222,10 @@ h1{
 
 .noMargin{
     margin: 0;
+}
+
+.wordBreak {
+    word-break: break-word;
 }
 /* Phone */
 @media screen and (max-width: 900px) {

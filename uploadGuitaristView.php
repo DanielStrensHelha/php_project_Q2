@@ -11,7 +11,7 @@
 </header>
 <body class="preload <?php  if(isset($_COOKIE['theme'])) echo $_COOKIE['theme']; else echo 'light'; ?>">
     <div class="grid wholeWidth justifyCenter">
-        <?php if (!$showForm) : ?>
+        <?php if (empty($_SESSION['user'])) : ?>
         <div class="grid comfortWidth justifyStretch">   
             <div class="centerX contentColor radius margin padding">
                 <p class="centerX margin">
@@ -20,10 +20,14 @@
             </div>
         </div>
         
-        <?php else : ?>
+        <?php elseif($showForm) : ?>
         
         <div class="grid comfortWidth justifyStretch">   
             <div class="centerX contentColor radius margin padding">
+                <p class="centerX">
+                    <?php if (!empty($problem)) echo $problem; ?>
+                </p>
+
                 <form action="#" method="post" class="grid doubleGrid margin padding smallGap" enctype="multipart/form-data">
 
                     <label for="name" class="wholeGridPhone">Nom du guitariste</label>
@@ -61,8 +65,7 @@ Tsobatso est un jeune guitariste.
 
                     <label for="descriptionLive" class="wholeGridPhone">Description du live</label>
                     <textarea name="descriptionLive" id="descriptionLive" cols="30" rows="10" class="wholeGridPhone" 
-                    placeholder="Vidéo de Tsobatso en live au mercury open, 2021"><?php if(isset($_POST['descriptionLive'])) echo htmlspecialchars($_POST['descriptionLive']); ?>
-                    </textarea>
+                    placeholder="Vidéo de Tsobatso en live au mercury open, 2021"><?php if(isset($_POST['descriptionLive'])) echo htmlspecialchars($_POST['descriptionLive']); ?></textarea>
 
                     <label for="interview" class="wholeGridPhone">Interview youtube</label>
                     <input type="text" name="interview" id="interview" 
@@ -71,8 +74,7 @@ Tsobatso est un jeune guitariste.
 
                     <label for="descriptionInterview">Description de l'interview</label>
                     <textarea name="descriptionInterview" id="descriptionInterview" class="wholeGridPhone" cols="30" rows="10" 
-                    placeholder="Interview de Tsobatso par Chris rock..."><?php if(isset($_POST['descriptionInterview'])) echo htmlspecialchars($_POST['descriptionInterview']); ?>
-                    </textarea>
+                    placeholder="Interview de Tsobatso par Chris rock..."><?php if(isset($_POST['descriptionInterview'])) echo htmlspecialchars($_POST['descriptionInterview']); ?></textarea>
 
                     <label for="photo1" class="wholeGridPhone">Photo du guitariste</label>
                     <input type="file" name="photo1" id="photo1" 
@@ -86,7 +88,18 @@ Tsobatso est un jeune guitariste.
             </div>
         </div>
 
+        <?php elseif($success) : ?>
+
+            <div class="grid comfortWidth justifyStretch">   
+                <div class="centerX contentColor radius margin padding">
+                    <p class="centerX margin">
+                        Votre post a bien été uploadé.
+                    </p>
+                </div>
+            </div>
+
         <?php endif; ?>
+
     </div>
 </body>
 </html>

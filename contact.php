@@ -1,5 +1,6 @@
 <?php
-include_once('init.php');
+require_once('init.php');
+require('locationDetails/path.php');
 
 $problem = false;
 $showForm = true;
@@ -27,11 +28,8 @@ if (isset($_POST['text_contact'])) :
                 // Génération d'un nom pour le fichier
                 do {
                     $fileName = uniqid('image_');
-                } while (file_exists('uploads/' . $fileName . $extension));
+                } while (file_exists($path . $fileName . $extension));
 
-
-                // Déplacement du fichier
-                include('locationDetails/path.php');
                 move_uploaded_file($_FILES['file_cont']['tmp_name'], $path . $fileName . '.' . $extension);
                 $keepFile = true;
             }
