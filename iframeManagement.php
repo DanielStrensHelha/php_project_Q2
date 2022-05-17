@@ -6,12 +6,12 @@ function getIdFromURL(string $url){
     if (isset($args['v']))
         $result = (strlen($args['v']) === 11) ? $args['v'] : false;
 
-    $pattern = "/^https:\/\/youtu\.be\/[a-zA-Z0-9-]{11}$/";
+    $pattern = "/^https:\/\/youtu\.be\/[a-zA-Z0-9-_]{11}$/";
     if (preg_match($pattern, $url)) 
         $result = explode("be/", $url)[1];
 
     // Spotify url
-    $pattern = "/^https:\/\/open\.spotify\.com\/track\/[a-zA-Z0-9-]{22}$/";
+    $pattern = "/^https:\/\/open\.spotify\.com\/track\/[a-zA-Z0-9-_]{22}$/";
     if (preg_match($pattern, $url)) 
         $result = explode("track/", $url)[1];
         
@@ -40,14 +40,14 @@ function displaySpotifyTrack($url, $nom) : void { ?>
 
 
 function isGoodYtbUrl(string $url): bool {
-    $pattern = "/(^https:\/\/www\.youtube\.com\/watch\?v=[-0-9a-zA-Z]{11}$)|(^https:\/\/youtu\.be\/[a-zA-Z0-9-]{11}$)/";
+    $pattern = "/(^https:\/\/www\.youtube\.com\/watch\?v=[-0-9a-zA-Z_]{11}$)|(^https:\/\/youtu\.be\/[a-zA-Z0-9-_]{11}$)/";
     if (preg_match($pattern, $url)) 
         return true;
     else return false;
 }
 
 function isGoodSpotifyUrl(string $url): bool {
-    $pattern = "/(^https:\/\/open\.spotify\.com\/track\/[a-zA-Z0-9-]{22}$)/";
+    $pattern = "/(^https:\/\/open\.spotify\.com\/track\/[a-zA-Z0-9-_]{22}$)/";
     if (preg_match($pattern, $url)) 
         return true;
     else return false;

@@ -76,16 +76,16 @@ if (isset($_SESSION['user'])) :
     else if (!in_array($extension1, $allowedExtensions))
         $problem = "Extension de la photo 1 invalide";
 
-    else if (!empty($photo2) and !in_array($extension2, $allowedExtensions))
+    else if (!empty($photo2['name']) and !in_array($extension2, $allowedExtensions))
         $problem = "Extension de la photo 2 invalide";
     
     else if ($photo1['error'] != 0)
         $problem = "problème avec la photo 1";
 
-    else if (!empty($photo2) and $photo2['error'] != 0)
+    else if (!empty($photo2['name']) and $photo2['error'] != 0)
         $problem = "problème avec la photo 2";
     
-    else if(!empty($photo2) and $photo2['error'] != 0)
+    else if(!empty($photo2['name']) and $photo2['error'] != 0)
         $problem = "problème avec la photo 2";
 
     else if($_FILES['photo1']['size'] > 10485760 or (!empty($_FILES['photo2']) and $_FILES['photo2']['size'] > 10485760))
@@ -101,7 +101,7 @@ if (isset($_SESSION['user'])) :
 
         move_uploaded_file($_FILES['photo1']['tmp_name'], $path . $fileName . '.' . $extension1);
 
-        if (!empty($photo2)) {
+        if (!empty($photo2['name'])) {
             // Génération nom fichier 2            
             do {
                 $fileName2 = uniqid('image_');
@@ -117,12 +117,12 @@ if (isset($_SESSION['user'])) :
         $statement = $db->prepare($sqlQuerry);
         $statement->bindValue(':name_guit', $name, PDO::PARAM_STR);
         $statement->bindValue(':thumnail', $fileName . '.' . $extension1, PDO::PARAM_STR);
-        $statement->bindValue(':ytbSample', $ytbSample, PDO::PARAM_STR);
-        $statement->bindValue(':sptSample', $sptSample, PDO::PARAM_STR);
+        $statement->bindValue(':ytbSample', getIdFromURL($ytbSample), PDO::PARAM_STR);
+        $statement->bindValue(':sptSample', getIdFromURL($sptSample), PDO::PARAM_STR);
         $statement->bindValue(':style', $style, PDO::PARAM_STR);
         $statement->bindValue(':wikiHero', $wikiHero, PDO::PARAM_STR);
 
-        if (!empty($photo2))
+        if (!empty($photo2['name']))
             $statement->bindValue(':pic', $fileName2 . '.' . $extension2, PDO::PARAM_STR);
         else
             $statement->bindValue(':pic', NULL, PDO::PARAM_NULL);
