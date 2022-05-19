@@ -16,7 +16,7 @@ $sqlTableCreation =
   CREATE TABLE guitarist(
   `id_guitarist` int(11) NOT NULL AUTO_INCREMENT,
   `name_guit` VARCHAR(25),
-  `thumbnail_guit` VARCHAR(19),
+  `thumbnail_guit` VARCHAR(23),
   `ytbSample_guit` VARCHAR(11),
   `sptSample_guit` VARCHAR(22),
   `style_guit` VARCHAR(75),

@@ -1,5 +1,7 @@
 <?php
 function getIdFromURL(string $url){
+    $result = NULL;
+
     // Youtube url
     $url_string = parse_url($url, PHP_URL_QUERY);
     parse_str($url_string, $args);
