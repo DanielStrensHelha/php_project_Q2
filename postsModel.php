@@ -15,11 +15,13 @@ if($browsePosts) {
                 break;
         }
     }
-
-    // Get the guitarists
+// TODO : Veryfi that sum works
+    // Get the guitarists 
     $sqlQuerry =    "SELECT thumbnail_guit, guitarist.id_guitarist, name_guit, wiki_hero, 
-                        AVG(appreciation.likes) AS likes, 
+                        AVG(appreciation.likes) AS appreciation, 
                         COUNT(comments.id_guitarist) AS comments
+                        SUM(appreciation.likes) AS likes 
+                        COUNT
                     FROM guitarist
                     LEFT JOIN appreciation ON guitarist.id_guitarist = appreciation.id_guitarist
                     LEFT JOIN comments ON guitarist.id_guitarist = comments.id_guitarist
@@ -38,10 +40,10 @@ if($browsePosts) {
     $posts = $statement->fetchAll();
 
     // get the count of posts to show
-    $sqlQuerry =    "SELECT COUNT(*) FROM guitarist;";
+    $sqlQuerry =    "SELECT COUNT(*) AS count FROM guitarist;";
     
     $statement = $db->prepare($sqlQuerry);
     $statement->execute();
 
-    $guitaristCount = $statement->fetch()['COUNT(*)'];
+    $guitaristCount = $statement->fetch()['count'];
 }

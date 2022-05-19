@@ -88,10 +88,16 @@
                             class="<?php echo $adminClass; ?> wholeGridPhone"
                         >
                     </div>
+                    <div class="wholeGrid">
+                        <form action="#" method="post" class="flex flexLign">
+                            <input type="submit" value="⬆️" name="like" class="like bigTxt">
+                            <div class="bigTxt"><?php  ?></div>
+                            <input type="submit" value="⬇️" name="like" class="like bigTxt">
+                        </form>
+                    </div>
                 </div>
 
             <?php endforeach; ?>
-
 
             <?php include("pageManagement.php") ?>
         </div>
