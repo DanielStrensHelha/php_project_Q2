@@ -31,25 +31,25 @@
                     <input type="submit" value="Rechercher" class="button wholeGridPhone noMargin border">
                 </form>
 
-                <form action="#" method="post" class="grid doubleGrid smallGap">
+                <form action="#" method="get" class="grid doubleGrid smallGap">
                     <div class="wholeGrid margin belleza">Trier par</div>
 
                     <label for="likeRatioSort">Ratio de like</label>
                     <input type="radio" name="sort" id="likeRatioSort" class="wholeWidth"
                     value="like_ratio"
-                    <?php if( !$checked or $_POST['sort'] === "like_ratio") echo "checked"; ?>
+                    <?php if( !isset($_GET['sort']) or $_GET['sort'] === "like_ratio") echo "checked"; ?>
                     >
                 
                     <label for="nameSort">Nom</label>
                     <input type="radio" name="sort" id="nameSort" class="wholeWidth"
                     value="name_sort"
-                    <?php if($checked and $_POST['sort'] === "name_sort") echo "checked"; ?>
+                    <?php if(isset($_GET['sort']) and $_GET['sort'] === "name_sort") echo "checked"; ?>
                     >
 
                     <label for="mostCommentedsort">Les plus commentés</label>
                     <input type="radio" name="sort" id="mostCommentedsort" class="wholeWidth"
                     value="most_commented_sort"
-                    <?php if($checked and $_POST['sort'] === "most_commented_sort") echo "checked"; ?>
+                    <?php if(isset($_GET['sort']) and $_GET['sort'] === "most_commented_sort") echo "checked"; ?>
                     >
 
                     <input type="submit" value="Appliquer les changements" class="button wholeGrid border">
@@ -88,11 +88,18 @@
                             class="<?php echo $adminClass; ?> wholeGridPhone"
                         >
                     </div>
-                    <div class="wholeGrid">
-                        <form action="#" method="post" class="flex flexLign">
-                            <input type="submit" value="⬆️" name="like" class="like bigTxt">
-                            <div class="bigTxt"><?php  ?></div>
-                            <input type="submit" value="⬇️" name="like" class="like bigTxt">
+                    <div class="">
+                        <form action="#" method="post" class="flex flexLign centerY">
+                            <input type="hidden" name="id_guit" value="<?php echo $post['id_guitarist']; ?>">
+                            <input style="<?php if(!in_array($post['id_guitarist'], $likedPosts)) echo "filter: grayscale(100%);"; ?>"
+                            type="submit" value="⬆️" name="like" class="like bigTxt">
+
+                            <div class=""><?php echo $post['likes']; ?></div>
+                            
+                            <input style="<?php if(!in_array($post['id_guitarist'], $dislikedPosts)) echo "filter: grayscale(100%);"; ?>" 
+                            type="submit" value="⬇️" name="like" class="like bigTxt">
+
+                            <div class=""><?php echo $post['appreciation_count'] - $post['likes']; ?></div>
                         </form>
                     </div>
                 </div>

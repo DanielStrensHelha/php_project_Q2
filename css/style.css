@@ -114,6 +114,9 @@ textarea {
 .marginVert {
     margin: 10px 0;
 }
+.marginHoriz {
+    margin: 0 10px;
+}
 .centerY{
     align-items: center;
 }
@@ -229,9 +232,13 @@ h1{
 }
 
 .like {
+    padding: 0;
     text-decoration: none;
     border: none;
     background-color: transparent;
+}
+.like:hover {
+    cursor: pointer;
 }
 
 

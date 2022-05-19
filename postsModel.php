@@ -5,8 +5,8 @@ if($browsePosts) {
     include('dbConnexion.php');
 
     $sort = 'AVG(appreciation.likes) DESC';
-    if(!empty($_POST['sort'])) {
-        switch ($_POST['sort']) {
+    if(!empty($_GET['sort'])) {
+        switch ($_GET['sort']) {
             case 'name_sort':
                 $sort = 'name_guit ASC';
                 break;
@@ -19,9 +19,9 @@ if($browsePosts) {
     // Get the guitarists 
     $sqlQuerry =    "SELECT thumbnail_guit, guitarist.id_guitarist, name_guit, wiki_hero, 
                         AVG(appreciation.likes) AS appreciation, 
-                        COUNT(comments.id_guitarist) AS comments
-                        SUM(appreciation.likes) AS likes 
-                        COUNT
+                        COUNT(comments.id_guitarist) AS comments,
+                        SUM(appreciation.likes) AS likes,
+                        COUNT(appreciation.likes) AS appreciation_count
                     FROM guitarist
                     LEFT JOIN appreciation ON guitarist.id_guitarist = appreciation.id_guitarist
                     LEFT JOIN comments ON guitarist.id_guitarist = comments.id_guitarist
@@ -46,4 +46,33 @@ if($browsePosts) {
     $statement->execute();
 
     $guitaristCount = $statement->fetch()['count'];
+
+    
+    // ------------- Get the liked posts ------------- //
+    $sqlQuerry =    "SELECT id_guitarist FROM appreciation WHERE id_user = :id_user && likes = 1;";
+    
+    $statement = $db->prepare($sqlQuerry);
+    $statement->execute([
+        'id_user' => $_SESSION['id_user']
+    ]);
+
+    $temp = $statement->fetchAll();
+
+    $likedPosts = array();
+    foreach($temp as $key => $value)
+        $likedPosts[] = $value['id_guitarist'];
+    
+    // Get the disliked posts
+    $sqlQuerry =    "SELECT id_guitarist FROM appreciation WHERE id_user = :id_user && likes = 0;";
+
+    $statement = $db->prepare($sqlQuerry);
+    $statement->execute([
+        'id_user' => $_SESSION['id_user']
+    ]);
+
+    $temp = $statement->fetchAll();
+
+    $dislikedPosts = array();
+    foreach($temp as $key => $value)
+        $dislikedPosts[] = $value['id_guitarist'];
 }
