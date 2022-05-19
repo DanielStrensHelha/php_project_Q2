@@ -2,7 +2,6 @@
 // If user didn't select a post yet :
 if($browsePosts) {
     // get posts from data base
-    include('dbConnexion.php');
 
     $sort = 'AVG(appreciation.likes) DESC';
     if(!empty($_GET['sort'])) {
@@ -63,7 +62,7 @@ if($browsePosts) {
         $likedPosts[] = $value['id_guitarist'];
     
     // Get the disliked posts
-    $sqlQuerry =    "SELECT id_guitarist FROM appreciation WHERE id_user = :id_user && likes = 0;";
+    $sqlQuerry = "SELECT id_guitarist FROM appreciation WHERE id_user = :id_user && likes = 0;";
 
     $statement = $db->prepare($sqlQuerry);
     $statement->execute([
