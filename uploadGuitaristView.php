@@ -83,7 +83,7 @@ Tsobatso est un jeune guitariste.
                     <label for="photo2" class="wholeGridPhone">Photo secondaire</label>
                     <input type="file" name="photo2" id="photo2" class="wholeGridPhone">
 
-                    <input type="submit" value="Poster" class="button wholeGrid">
+                    <input type="submit" value="Poster" class="button wholeGrid border">
                 </form>
             </div>
         </div>
