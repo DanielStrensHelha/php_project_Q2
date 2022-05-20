@@ -42,18 +42,35 @@ if ($browsePosts) {
 
 
     // ------------- Like interraction ------------- //
-    if(isset($_POST['like'], $_POST['id_guit'])) {
-        if(in_array($_POST['id_guit'], $likedPosts) or in_array($_POST['id_guit'], $dislikedPosts))
-            $sqlQuerry = "UPDATE appreciation SET likes = 1-likes WHERE id_guitarist = :id_guitarist && id_user = :id_user;";
-        else
-            $sqlQuerry =   "INSERT INTO appreciation (id_guitarist, id_user, likes) 
-                            VALUES (:id_guitarist, :id_user, " . ($_POST['like'] === '⬆️') ? 1 : 0 . ");";
-
+    if(!empty($_POST['id_guit']) and !empty($_POST['like'])) {
+        $like = ($_POST['like'] === '⬆️') ? 1 : 0;
+        
+        //Remove from db
+        $sqlQuerry = "DELETE FROM appreciation WHERE id_user = :id_user && id_guitarist = :id_guitarist;";
+        
         $statement = $db->prepare($sqlQuerry);
         $statement->execute([
-            'id_guitarist' => $_POST['id_guit'],
-            'id_user' => $_SESSION['id_user']
+            'id_user' => $_SESSION['id_user'],
+            'id_guitarist' => $_POST['id_guit']
         ]);
+
+        // Add in arrays and db
+        if ($like === 1 and in_array($_POST['id_guit'], $likedPosts));
+        else if($like === 0 and in_array($_POST['id_guit'], $dislikedPosts));
+        else {
+            $sqlQuerry = "INSERT INTO appreciation (id_user, id_guitarist, likes) VALUES (:id_user, :id_guitarist, :likes);";
+            
+            $statement = $db->prepare($sqlQuerry);
+            $statement->execute([
+                'id_user' => $_SESSION['id_user'],
+                'id_guitarist' => $_POST['id_guit'],
+                'likes' => $like
+            ]);
+
+            //Array managing
+        }
+        
+        header('Location: posts.php?page=' . $page);
     }
 
     include("postsViewBrowse.php");

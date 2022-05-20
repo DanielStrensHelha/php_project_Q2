@@ -22,8 +22,10 @@ if($browsePosts) {
                         SUM(appreciation.likes) AS likes,
                         COUNT(appreciation.likes) AS appreciation_count
                     FROM guitarist
+
                     LEFT JOIN appreciation ON guitarist.id_guitarist = appreciation.id_guitarist
-                    LEFT JOIN comments ON guitarist.id_guitarist = comments.id_guitarist
+                    INNER JOIN comments ON guitarist.id_guitarist = comments.id_guitarist
+                    
                     GROUP BY guitarist.id_guitarist
                     ORDER BY $sort
                     LIMIT :startPost, :numberOfPosts;
@@ -48,11 +50,13 @@ if($browsePosts) {
 
     
     // ------------- Get the liked posts ------------- //
+    $idUser = (!empty($_SESSION['id_user'])) ? $_SESSION['id_user'] : -1;
+    
     $sqlQuerry =    "SELECT id_guitarist FROM appreciation WHERE id_user = :id_user && likes = 1;";
     
     $statement = $db->prepare($sqlQuerry);
     $statement->execute([
-        'id_user' => $_SESSION['id_user']
+        'id_user' => $idUser
     ]);
 
     $temp = $statement->fetchAll();
@@ -66,7 +70,7 @@ if($browsePosts) {
 
     $statement = $db->prepare($sqlQuerry);
     $statement->execute([
-        'id_user' => $_SESSION['id_user']
+        'id_user' => $idUser
     ]);
 
     $temp = $statement->fetchAll();
