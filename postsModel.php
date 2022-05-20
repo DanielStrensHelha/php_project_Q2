@@ -3,28 +3,35 @@
 if($browsePosts) {
     // get posts from data base
 
-    $sort = 'AVG(appreciation.likes) DESC';
+    $sort = 'appreciation_avg DESC';
     if(!empty($_GET['sort'])) {
         switch ($_GET['sort']) {
             case 'name_sort':
                 $sort = 'name_guit ASC';
                 break;
             case 'most_commented_sort':
-                $sort = "COUNT(comments.id_guitarist) DESC";
+                $sort = "comments_count DESC";
                 break;
         }
     }
-// TODO : Veryfi that sum works
+    
     // Get the guitarists 
-    $sqlQuerry =    "SELECT thumbnail_guit, guitarist.id_guitarist, name_guit, wiki_hero, 
-                        AVG(appreciation.likes) AS appreciation, 
-                        COUNT(comments.id_guitarist) AS comments,
-                        SUM(appreciation.likes) AS likes,
-                        COUNT(appreciation.likes) AS appreciation_count
+    $sqlQuerry =    "SELECT thumbnail_guit, guitarist.id_guitarist, name_guit, wiki_hero,
+                        (SELECT AVG(appreciation.likes) FROM appreciation WHERE appreciation.id_guitarist = guitarist.id_guitarist) 
+                        AS appreciation_avg, 
+                        
+                        (SELECT SUM(appreciation.likes) FROM appreciation WHERE appreciation.id_guitarist = guitarist.id_guitarist)
+                        AS likes,
+                        
+                        (SELECT COUNT(appreciation.likes) FROM appreciation WHERE appreciation.id_guitarist = guitarist.id_guitarist)
+                        AS appreciation_count,
+                        
+                        (SELECT COUNT(comments.id_guitarist) FROM comments WHERE comments.id_guitarist = guitarist.id_guitarist)
+                        AS comments_count
+                    
                     FROM guitarist
-
                     LEFT JOIN appreciation ON guitarist.id_guitarist = appreciation.id_guitarist
-                    INNER JOIN comments ON guitarist.id_guitarist = comments.id_guitarist
+                    LEFT JOIN comments ON guitarist.id_guitarist = comments.id_guitarist
                     
                     GROUP BY guitarist.id_guitarist
                     ORDER BY $sort

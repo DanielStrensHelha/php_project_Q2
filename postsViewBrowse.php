@@ -94,12 +94,12 @@
                             <input style="<?php if(!in_array($post['id_guitarist'], $likedPosts)) echo "filter: grayscale(100%);"; ?>"
                             type="submit" value="⬆️" name="like" class="like bigTxt">
 
-                            <div class=""><?php echo $post['likes']; ?></div>
+                            <div class=""><?php echo (int)$post['likes']; ?></div>
                             
                             <input style="<?php if(!in_array($post['id_guitarist'], $dislikedPosts)) echo "filter: grayscale(100%);"; ?>" 
                             type="submit" value="⬇️" name="like" class="like bigTxt">
 
-                            <div class=""><?php echo $post['appreciation_count'] - $post['likes']; ?></div>
+                            <div class=""><?php echo (int)$post['appreciation_count'] - $post['likes']; ?></div>
                         </form>
                     </div>
                 </div>
