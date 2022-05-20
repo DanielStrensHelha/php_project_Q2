@@ -54,9 +54,9 @@ if ($browsePosts) {
             'id_guitarist' => $_POST['id_guit']
         ]);
 
-        // Add in arrays and db
-        if ($like === 1 and in_array($_POST['id_guit'], $likedPosts));
-        else if($like === 0 and in_array($_POST['id_guit'], $dislikedPosts));
+        // Add in db
+        if ($like === 1 and in_array($_POST['id_guit'], $likedPosts))/* Do nothing */;
+        else if($like === 0 and in_array($_POST['id_guit'], $dislikedPosts))/* Do nothing */;
         else {
             $sqlQuerry = "INSERT INTO appreciation (id_user, id_guitarist, likes) VALUES (:id_user, :id_guitarist, :likes);";
             
@@ -67,10 +67,9 @@ if ($browsePosts) {
                 'likes' => $like
             ]);
 
-            //Array managing
         }
         
-        header('Location: posts.php?page=' . $page);
+        header('Location: posts.php?page=' . $page . ((isset($_GET['sort'])) ? '&sort=' . $_GET['sort'] : ''));
     }
 
     include("postsViewBrowse.php");
