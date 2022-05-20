@@ -1,14 +1,4 @@
-<?php 
-/* 
-SELECT 
-    columnName
-FROM
-    table
-WHERE
-    columnName REGEXP pattern
-
-    TODO - add a search box to the top of the page
-*/
+<?php
 
 $pageTitle = 'Posts';
 include('init.php');

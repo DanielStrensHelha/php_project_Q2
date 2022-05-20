@@ -1,8 +1,8 @@
 <?php
 // If user didn't select a post yet :
 if($browsePosts) {
-    // get posts from data base
 
+    //Decide the sorting method
     $sort = 'appreciation_avg DESC';
     if(!empty($_GET['sort'])) {
         switch ($_GET['sort']) {
@@ -14,6 +14,9 @@ if($browsePosts) {
                 break;
         }
     }
+
+    //Set filter
+    $filter = (isset($_GET['search'])) ? $_GET['search'] : '';
     
     // Get the guitarists 
     $sqlQuerry =    "SELECT thumbnail_guit, guitarist.id_guitarist, name_guit, wiki_hero,
@@ -32,6 +35,8 @@ if($browsePosts) {
                     FROM guitarist
                     LEFT JOIN appreciation ON guitarist.id_guitarist = appreciation.id_guitarist
                     LEFT JOIN comments ON guitarist.id_guitarist = comments.id_guitarist
+
+                    WHERE name_guit REGEXP :search OR style_guit REGEXP :search
                     
                     GROUP BY guitarist.id_guitarist
                     ORDER BY $sort
@@ -42,6 +47,7 @@ if($browsePosts) {
     
     $statement->bindValue('startPost', ($page - 1) * POSTS_BY_PAGE, PDO::PARAM_INT);
     $statement->bindValue('numberOfPosts', POSTS_BY_PAGE, PDO::PARAM_INT);
+    $statement->bindValue('search', $filter, PDO::PARAM_STR);
     
     $statement->execute();
 
