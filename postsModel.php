@@ -102,7 +102,7 @@ if($browsePosts) {
 }
 
 
-// -------------- If guitarist selected -------------- //
+// -------------------------- If guitarist selected ------------------------ //
 else if (isset($guitId)) {
     //Get guitarist informations
     $sqlQuerry =    "SELECT * FROM guitarist
@@ -147,6 +147,9 @@ else if (isset($guitId)) {
         ]);
         $userAppreciation = $statement->fetch();
         $userAppreciation = (isset($userAppreciation['likes'])) ? $userAppreciation['likes'] : false;
+
+        $likedPosts = ($userAppreciation === 1) ? array($guitId) : array();
+        $dislikedPosts = ($userAppreciation === 0) ? array($guitId) : array();
     }
     
     // Get the guitarist comments

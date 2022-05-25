@@ -1,13 +1,12 @@
 <?php
-
 $pageTitle = 'Posts';
 include('init.php');
 include('dbConnexion.php');
 
 $browsePosts = true;
 
-// --------- If the user selected a post --------- // 
-if (isset($_GET['guit'])) {
+// ----------------------- When guitarist selected ----------------------- //
+if (!empty($_GET['guit'])) {
     //Browse through posts
     $browsePosts = false;
     $guitId = $_GET['guit'];
@@ -23,8 +22,45 @@ include('postsModel.php');
 include('locationDetails/path.php');
 
 
-// ----------------------- When guitarist selected ----------------------- //
+// ------------- Like interraction ------------- //
+if(isset($_SESSION['id_user'])) {
+    if(!empty($_POST['id_guit']) and !empty($_POST['like'])) {
+        $like = ($_POST['like'] === '⬆️') ? 1 : 0;
 
+        //Remove from db
+        $sqlQuerry = "DELETE FROM appreciation WHERE id_user = :id_user && id_guitarist = :id_guitarist;";
+        
+        $statement = $db->prepare($sqlQuerry);
+        $statement->execute([
+            'id_user' => $_SESSION['id_user'],
+            'id_guitarist' => $_POST['id_guit']
+        ]);
+
+        // Add in db
+        print_r($_POST);
+        echo '<br> likes = $like';
+        echo '<br> tableau dislike ';
+        print_r($dislikedPosts);
+
+        if ($like === 1 and in_array($_POST['id_guit'], $likedPosts))/* Do nothing */;
+        else if($like === 0 and in_array($_POST['id_guit'], $dislikedPosts))/* Do nothing */;
+        else {
+            $sqlQuerry = "INSERT INTO appreciation (id_user, id_guitarist, likes) VALUES (:id_user, :id_guitarist, :likes);";
+            
+            $statement = $db->prepare($sqlQuerry);
+            $statement->execute([
+                'id_user' => $_SESSION['id_user'],
+                'id_guitarist' => $_POST['id_guit'],
+                'likes' => $like
+            ]);
+
+        }
+        
+        header('Location: posts.php?page=' . $page . 
+        '&search=' . $_POST['search'] . 
+        '&guit=' . (isset($_POST['id_guit_selected']) ? $_POST['id_guit_selected'] : '' ));
+    }
+}
 
 // ----------------------- When browsing posts ----------------------- //
 if ($browsePosts) {
@@ -34,40 +70,6 @@ if ($browsePosts) {
         $desc[] = substr($post['wiki_hero'], 0, 400) . '...';
 
     $pages = ceil($guitaristCount / POSTS_BY_PAGE);
-
-
-    // ------------- Like interraction ------------- //
-    if(isset($_SESSION['id_user'])) {
-        if(!empty($_POST['id_guit']) and !empty($_POST['like'])) {
-            $like = ($_POST['like'] === '⬆️') ? 1 : 0;
-            
-            //Remove from db
-            $sqlQuerry = "DELETE FROM appreciation WHERE id_user = :id_user && id_guitarist = :id_guitarist;";
-            
-            $statement = $db->prepare($sqlQuerry);
-            $statement->execute([
-                'id_user' => $_SESSION['id_user'],
-                'id_guitarist' => $_POST['id_guit']
-            ]);
-
-            // Add in db
-            if ($like === 1 and in_array($_POST['id_guit'], $likedPosts))/* Do nothing */;
-            else if($like === 0 and in_array($_POST['id_guit'], $dislikedPosts))/* Do nothing */;
-            else {
-                $sqlQuerry = "INSERT INTO appreciation (id_user, id_guitarist, likes) VALUES (:id_user, :id_guitarist, :likes);";
-                
-                $statement = $db->prepare($sqlQuerry);
-                $statement->execute([
-                    'id_user' => $_SESSION['id_user'],
-                    'id_guitarist' => $_POST['id_guit'],
-                    'likes' => $like
-                ]);
-
-            }
-            
-            header('Location: posts.php?page=' . $page . ((isset($_GET['sort'])) ? '&sort=' . $_GET['sort'] : ''));
-        }
-    }
 
     include("postsViewBrowse.php");
 }

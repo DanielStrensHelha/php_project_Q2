@@ -22,16 +22,13 @@
 
             <div class="grid centerX contentColor radius margin padding">
 
-                <form action="#" method="get" class="tripleGrid grid centerY">
+                <form action="#" method="get" class="doubleGrid grid centerY">
                     <label for="Research" class="wholeGridPhone belleza">Chercher guitariste / style: </label>
                     <input type="text" name="search" id="Research" placeholder="Guitarist name" maxlength="50"
                     class="wholeGridPhone margin"
                     value="<?php if(isset($_GET['search'])) echo htmlspecialchars($_GET['search']); ?>"                   
                     >
-                    <input type="submit" value="Rechercher" class="button wholeGridPhone noMargin border">
-                </form>
 
-                <form action="#" method="get" class="grid doubleGrid smallGap">
                     <div class="wholeGrid margin belleza">Trier par</div>
 
                     <label for="likeRatioSort">Ratio de like</label>
@@ -90,6 +87,7 @@
                     </div>
                     <div class="">
                         <form action="#" method="post" class="flex flexLign centerY">
+                            <input type="hidden" name="search" value="<?php if(isset($_GET['search'])) echo htmlspecialchars($_GET['search']); ?>">
                             <input type="hidden" name="id_guit" value="<?php echo $post['id_guitarist']; ?>">
                             <input style="<?php if(!in_array($post['id_guitarist'], $likedPosts)) echo "filter: grayscale(100%);"; ?>"
                             type="submit" value="⬆️" name="like" class="like bigTxt">
