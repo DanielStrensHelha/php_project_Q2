@@ -77,7 +77,7 @@
                         </h2>
                         
                         <p class="wordBreak">
-                            <?php echo htmlspecialchars($desc[$i]); ?>
+                            <?php formatWiki($desc[$i]); echo $desc[$i]; ?>
                         </p>
                     </div>    
 

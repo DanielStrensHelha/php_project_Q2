@@ -20,9 +20,9 @@ function getIdFromURL(string $url){
     return $result;
 }
 
-function displayYoutubeVideo($url, $nom) : void { ?>
+function displayYoutubeVideo($id, $nom) : void { ?>
     <iframe class="video"
-        src="https://www.youtube-nocookie.com/embed/<?php echo getIdFromURL($url); ?>"
+        src="https://www.youtube-nocookie.com/embed/<?php echo htmlspecialchars($id); ?>"
         
         title="<?php echo $nom; ?>"
         frameborder="0"
@@ -30,10 +30,10 @@ function displayYoutubeVideo($url, $nom) : void { ?>
     </iframe>
 <?php }
 
-function displaySpotifyTrack($url, $nom) : void { ?>
+function displaySpotifyTrack($id) : void { ?>
     <iframe 
-        src="https://open.spotify.com/embed/track/<?php echo getIdFromURL($url); ?>?utm_source=generator" 
-
+        src="https://open.spotify.com/embed/track/<?php echo htmlspecialchars($id); ?>?utm_source=generator" 
+        height="80"
         frameBorder="0" 
         allowfullscreen="" 
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">

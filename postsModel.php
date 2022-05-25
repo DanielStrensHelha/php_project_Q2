@@ -1,5 +1,13 @@
 <?php
-// If user didn't select a post yet :
+function formatWiki(&$wiki) {
+    //Format the wiki
+    $wiki = str_replace('<', '<strong class="subTitle color2"&gt;', $wiki);
+    $wiki = str_replace('>', '</strong><br>', $wiki);
+    $wiki = str_replace('&gt;', '>', $wiki);
+}
+
+
+// -------------- If Browsing posts -------------- //
 if($browsePosts) {
 
     //Decide the sorting method
@@ -91,4 +99,63 @@ if($browsePosts) {
     $dislikedPosts = array();
     foreach($temp as $key => $value)
         $dislikedPosts[] = $value['id_guitarist'];
+}
+
+
+// -------------- If guitarist selected -------------- //
+else if (isset($guitId)) {
+    //Get guitarist informations
+    $sqlQuerry =    "SELECT * FROM guitarist
+                    WHERE id_guitarist = :id_guitarist;
+                    ";
+    
+    $statement = $db->prepare($sqlQuerry);
+    $statement->execute([
+        'id_guitarist' => $guitId
+    ]);
+    $guitarist = $statement->fetch();
+
+
+    //Get the guitarist likes and dislikes
+    $sqlQuerry =   "SELECT COUNT(appreciation.likes) AS likeCount
+                    FROM appreciation 
+                    WHERE id_guitarist = :id_guitarist && likes = :likes;";
+
+    $statement = $db->prepare($sqlQuerry);
+    
+    $statement->execute([
+        'id_guitarist' => $guitId,
+        'likes' => 1
+    ]);
+    $likes = $statement->fetch()['likeCount'];
+    
+    $statement->execute([
+        'id_guitarist' => $guitId,
+        'likes' => 0
+    ]);
+    $dislikes = $statement->fetch()['likeCount'];
+
+
+    //Get the user appreciation of the guitarist
+    if (isset($_SESSION['id_user'])) {
+        $sqlQuerry =   "SELECT likes FROM appreciation 
+                    WHERE id_guitarist = :id_guitarist && id_user = :id_user;";
+        $statement = $db->prepare($sqlQuerry);
+        $statement->execute([
+            'id_guitarist' => $guitId,
+            'id_user' => $_SESSION['id_user']
+        ]);
+        $userAppreciation = $statement->fetch();
+        $userAppreciation = (isset($userAppreciation['likes'])) ? $userAppreciation['likes'] : false;
+    }
+    
+    // Get the guitarist comments
+    $sqlQuerry =   "SELECT *
+                    FROM comments 
+                    WHERE id_guitarist = :id_guitarist;";
+    $statement = $db->prepare($sqlQuerry);
+    $statement->execute([
+        'id_guitarist' => $guitId
+    ]);
+    $comments = $statement->fetchAll();
 }

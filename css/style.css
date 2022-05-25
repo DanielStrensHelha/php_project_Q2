@@ -200,6 +200,9 @@ a{
 h1{
     padding: 11px 0;
 }
+.subTitle{
+    font-size: 20;
+}
 .color2 {
     color: var(--text2);
 }

@@ -7,19 +7,24 @@ include('dbConnexion.php');
 $browsePosts = true;
 
 // --------- If the user selected a post --------- // 
-if (isset($_GET['id_guitarist'])) {
+if (isset($_GET['guit'])) {
     //Browse through posts
     $browsePosts = false;
+    $guitId = $_GET['guit'];
 }
 
 // ------------------ Verify and set the page number ---------------------- //
 $page = (isset($_GET['page']) and $_GET['page'] > 0) ? $_GET['page'] : 1;
 
 // -----------  Gather informations ------------ //
-include ('postsModel.php');
+include('postsModel.php');
 
 // ----------- Include path for the images ------------ //
 include('locationDetails/path.php');
+
+
+// ----------------------- When guitarist selected ----------------------- //
+
 
 // ----------------------- When browsing posts ----------------------- //
 if ($browsePosts) {
@@ -65,4 +70,8 @@ if ($browsePosts) {
     }
 
     include("postsViewBrowse.php");
+}
+else {
+    include('iframeManagement.php');
+    include("postsViewGuitarist.php");
 }
