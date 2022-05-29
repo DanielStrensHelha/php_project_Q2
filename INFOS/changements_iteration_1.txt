@@ -1,0 +1,2 @@
+Changements itération 1 :
+    Modèle entité association mis à jour.

@@ -21,6 +21,37 @@ include('postsModel.php');
 // ----------- Include path for the images ------------ //
 include('locationDetails/path.php');
 
+// ------------- Delete comments ---------------- //
+if (isset($_POST['delete'])) {
+    if ((isset($_SESSION['admin']) and $_SESSION['admin'] > 0) or $_SESSION['id_user'] === $_POST['id_user_comment']) {
+        $sqlQuerry = "DELETE FROM comments WHERE id_comments = :id_comment;";
+        $statement = $db->prepare($sqlQuerry);
+        $statement->execute([
+            'id_comment' => $_POST['id_comment']
+        ]);
+        header('Location: posts.php?guit=' . $_GET['guit']);
+    }
+}
+
+
+// ------------- Add comments ---------------- //
+if (isset($_POST['comm'], $_GET['guit'], $_SESSION['id_user'])) {
+    // Verify comment size
+    if (strlen($_POST['comm']) > 750)
+        $problemComm = 'Your comment is too long.';
+    else {
+        $sqlQuerry = "INSERT INTO comments (id_user, id_guitarist, text_com)
+                      VALUES (:id_user, :id_guitarist, :comment);";
+        $statement = $db->prepare($sqlQuerry);
+        $statement->execute([
+            'id_user' => $_SESSION['id_user'],
+            'id_guitarist' => $_GET['guit'],
+            'comment' => $_POST['comm']
+        ]);
+
+        header('Location: posts.php?guit=' . $_GET['guit']);
+    }
+}
 
 // ------------- Like interraction ------------- //
 if(isset($_SESSION['id_user'])) {

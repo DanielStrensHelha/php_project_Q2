@@ -11,6 +11,10 @@
 </header>
 <body class="preload <?php  if(isset($_COOKIE['theme'])) echo $_COOKIE['theme']; else echo 'light'; ?>">
     <div class="grid wholeWidth justifyCenter">
+    <?php if(empty($guitarist['name_guit'])) : ?>
+            <h1>Erreur 404 : Guitariste non trouvé</h1>
+            <h1>:(</h1>
+    <?php else : ?>
 
         <div class="grid comfortWidth justifyStretch">   
             <h1 class="centerX contentColor radius padding marginVert">
@@ -98,6 +102,45 @@
             </div>
             <?php endif; ?>
 
+            <!-- Commentaires -->
+            <div class="centerX contentColor radius padding grid marginVert">
+                <h2>Commentaires</h2>
+            </div>
+
+            <?php if(isset($_SESSION['id_user'])) : ?>
+            <div class="centerX contentColor radius padding grid">
+                <form action="#" method="post" class="grid">
+                    <?php if(isset($problemComm)) echo htmlspecialchars($problemComm); ?>
+                    <textarea name="comm" id="comm" cols="40" rows="3" maxlength="750"></textarea>
+                    <input type="submit" value="Commenter" class="border button">
+                </form>
+            </div>
+
+
+            <?php endif; ?>
+
+
+            <?php if(!empty($comments)) { ?>
+                <?php foreach($comments as $comment) : ?>
+                <div class="contentColor radius padding marginVert centerY grid commentGrid">
+                    <h3><?php echo htmlspecialchars($comment['pseudo_user']) . ' : ' . $comment['date_com']; ?></h3>
+                    <p><?php echo htmlspecialchars($comment['text_com']) ?></p>
+                    
+                    <?php if( (isset($_SESSION['admin']) and $_SESSION['admin'] >= 1) or ($_SESSION['id_user'] === $comment['id_user']) ) : ?>
+                    <form action="#" method="post">
+                        <input type="hidden" name="id_comment" value="<?php echo $comment['id_comments']; ?>">
+                        <input type="hidden" name="id_user_comment" value="<?php echo $comment['id_user']; ?>">
+                        <input type="submit" value="⛔" class="like bigTxt" name="delete">
+                    </form>
+                    <?php endif; ?>
+
+                </div>
+                <?php endforeach; ?>
+            <?php } ?>
+
+
+
+    <?php endif; ?>
         </div>
     </div>
 </body>

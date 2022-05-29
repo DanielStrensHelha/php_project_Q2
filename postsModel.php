@@ -104,6 +104,7 @@ if($browsePosts) {
 
 // -------------------------- If guitarist selected ------------------------ //
 else if (isset($guitId)) {
+    
     //Get guitarist informations
     $sqlQuerry =    "SELECT * FROM guitarist
                     WHERE id_guitarist = :id_guitarist;
@@ -136,7 +137,7 @@ else if (isset($guitId)) {
     $dislikes = $statement->fetch()['likeCount'];
 
 
-    //Get the user appreciation of the guitarist
+    //Get the user appreciation of the guitarist (if user is connected)
     if (isset($_SESSION['id_user'])) {
         $sqlQuerry =   "SELECT likes FROM appreciation 
                     WHERE id_guitarist = :id_guitarist && id_user = :id_user;";
@@ -153,8 +154,9 @@ else if (isset($guitId)) {
     }
     
     // Get the guitarist comments
-    $sqlQuerry =   "SELECT *
-                    FROM comments 
+    $sqlQuerry =   "SELECT comments.*, users.pseudo_user AS pseudo_user
+                    FROM comments
+                    LEFT JOIN users ON users.id_user = comments.id_user
                     WHERE id_guitarist = :id_guitarist;";
     $statement = $db->prepare($sqlQuerry);
     $statement->execute([

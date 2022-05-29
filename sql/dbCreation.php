@@ -33,7 +33,7 @@ $sqlTableCreation =
 
   CREATE TABLE comments(
   `id_comments` int(11) NOT NULL AUTO_INCREMENT,
-  `date_com` DATETIME,
+  `date_com` DATETIME NOT NULL,
   `text_com` TEXT,
   `id_user` int(11) NOT NULL,
   `id_guitarist` int(11) NOT NULL,
